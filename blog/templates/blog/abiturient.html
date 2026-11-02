@@ -1,0 +1,124 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Абитуриенту 2026 — ДГТУ{% endblock %}
+
+{% block content %}
+
+<style>
+.breadcrumbs { background: #f0f2f5; border-bottom: 1px solid #e5e7eb; padding: 14px 20px; }
+.breadcrumbs-inner { max-width: 1400px; margin: 0 auto; font-size: 14px; color: #6b7280; }
+.breadcrumbs-inner a { color: #1a2b4a; text-decoration: none; font-weight: 600; }
+.breadcrumbs-inner a:hover { color: #c9a227; }
+.breadcrumbs-inner span { margin: 0 8px; }
+
+.abitur-hero { background: linear-gradient(135deg, #f0f2f5 0%, #e8ebf0 100%); padding: 50px 20px; }
+.abitur-hero-inner { max-width: 1500px; margin: 0 auto; display: grid; grid-template-columns: 1fr 420px 1.4fr; gap: 32px; align-items: stretch; }
+.abitur-hero-text { display: flex; flex-direction: column; justify-content: center; }
+.abitur-hero-text h1 { font-size: 34px; color: #1a2b4a; line-height: 1.2; margin: 0 0 20px; font-weight: 700; }
+.abitur-hero-text h1 span { color: #c9a227; }
+.abitur-hero-text p { font-size: 15px; color: #1f2430; line-height: 1.7; margin: 0; }
+.abitur-hero-photo { display: flex; justify-content: center; align-items: center; }
+.abitur-hero-photo img { width: 100%; max-width: 420px; height: auto; max-height: 520px; object-fit: contain; border-radius: 0; box-shadow: none; display: block; }
+
+.abitur-hero-faculties { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.abitur-faculties-grid { display: flex; flex-direction: column; width: 100%; max-width: 600px; gap: 12px; margin-bottom: 16px; }
+
+.abitur-faculty-item { 
+    display: flex; align-items: center; justify-content: center; gap: 12px; 
+    padding: 24px 20px; background: #fff; border-radius: 10px; 
+    text-decoration: none; color: #1a2b4a; font-size: 18px; font-weight: 700; 
+    text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.08); 
+    border-left: 4px solid transparent; transition: 0.3s; 
+}
+.abitur-faculty-item:hover { border-left-color: #c9a227; transform: translateY(-3px); color: #c9a227; }
+.abitur-faculty-icon { font-size: 28px; }
+
+.btn-priem-kampania { display: block; width: 100%; max-width: 600px; padding: 18px; background: linear-gradient(135deg, #1a2b4a 0%, #0f1c33 100%); color: #fff; text-decoration: none; text-align: center; border-radius: 10px; font-size: 16px; font-weight: 700; letter-spacing: 0.5px; transition: 0.3s; border-left: 4px solid #c9a227; }
+.btn-priem-kampania:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(26,43,74,0.25); }
+
+.person-section { padding: 80px 20px; background: #fff; }
+.person-section-alt { background: #f4f5f7; }
+.person-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 600px 1fr; gap: 60px; align-items: center; }
+.person-container-reverse { grid-template-columns: 1fr 600px; }
+.person-photo img { width: 100%; height: auto; max-height: 700px; object-fit: cover; border-radius: 16px; box-shadow: 0 25px 60px rgba(26,43,74,0.25); border: 8px solid #fff; display: block; }
+.person-text h2 { font-size: 34px; color: #fff; margin: 0; font-weight: 700; line-height: 1.2; background: linear-gradient(135deg, #1a2b4a 0%, #0f1c33 100%); padding: 22px 30px; border-radius: 12px 12px 0 0; border-left: 6px solid #c9a227; }
+.person-role { font-size: 17px; color: #fff; font-weight: 700; margin: 0 0 28px 0; text-transform: uppercase; letter-spacing: 1px; background: linear-gradient(135deg, #c9a227 0%, #e0be4e 100%); padding: 14px 30px; border-radius: 0 0 12px 12px; display: block; box-shadow: 0 8px 20px rgba(201,162,39,0.25); }
+.person-text p { font-size: 17px; line-height: 1.8; color: #1f2430; margin: 0 0 20px; text-align: justify; }
+.person-highlight { background: #fff8e5; padding: 20px 24px; border-left: 5px solid #c9a227; border-radius: 10px; font-weight: 600; font-size: 17px; color: #1a2b4a; text-align: left; line-height: 1.7; }
+.person-badge { display: inline-block; background: linear-gradient(135deg, #1a2b4a 0%, #0f1c33 100%); color: #e0be4e; padding: 8px 22px; border-radius: 8px; font-size: 14px; font-weight: 700; letter-spacing: 2px; margin-bottom: 20px; border-left: 4px solid #c9a227; text-transform: uppercase; }
+
+@media (max-width: 1100px) {
+    .abitur-hero-inner { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+    .abitur-hero-photo img { max-width: 320px; max-height: 380px; }
+    .person-container, .person-container-reverse { grid-template-columns: 1fr; gap: 32px; }
+    .person-text h2 { font-size: 26px; padding: 16px 20px; }
+    .person-role { font-size: 15px; padding: 12px 20px; }
+    .person-text p { font-size: 15px; }
+    .person-section { padding: 50px 16px; }
+}
+</style>
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <a href="{% url 'home' %}">🏠 Главная</a>
+        <span>›</span>
+        <span>Абитуриенту 2026</span>
+    </div>
+</div>
+
+<section class="abitur-hero">
+    <div class="abitur-hero-inner">
+        <div class="abitur-hero-text">
+            <h1>ДГТУ — <span>лидер в подготовке инженерных кадров</span> для региона, страны и мира</h1>
+            <p>Программы бакалавриата, специалитета и магистратуры, уровень преподавания, передовые методики обучения, отвечающие современным международным стандартам, выводят ДГТУ на первые позиции в образовательном пространстве региона.</p>
+        </div>
+
+        <div class="abitur-hero-photo">
+            <img src="{% static 'images/student.png' %}" alt="Абитуриент ДГТУ">
+        </div>
+
+        <div class="abitur-hero-faculties">
+            <div class="abitur-faculties-grid">
+                <a href="#" class="abitur-faculty-item">
+                    <span class="abitur-faculty-icon">💻</span>
+                    <span>Факультет компьютерных технологий и энергетики</span>
+                </a>
+            </div>
+            <a href="#" class="btn-priem-kampania">Приемная кампания 2026 года</a>
+        </div>
+    </div>
+</section>
+
+<section class="person-section">
+    <div class="person-container">
+        <div class="person-photo">
+            <img src="{% static 'images/rector.png' %}" alt="Ректор ДГТУ">
+        </div>
+        <div class="person-text">
+            <h2>Баламирзоев Назим Людинович</h2>
+            <p class="person-role">ректор ДГТУ</p>
+            <p>Наш век — век высоких технологий — немыслим без вычислительной техники и современного технического оборудования. Поэтому по мере развития рыночных реформ в нашей стране все большим спросом будут пользоваться специалисты, обладающие глубокими знаниями по техническим дисциплинам и имеющие навыки пользования сложным оборудованием. Именно такие знания и практические навыки вы сможете получить в Дагестанском государственном техническом университете.</p>
+            <p>Сегодня, занимая приоритетную позицию в рейтинге высших учебных заведений, университет выпускает современных конкурентоспособных специалистов, обученных принимать эффективные решения, знакомых с современными методиками работы в реальных рыночных условиях, обладающих солидной научной базой и уникальным сплавом компетенций.</p>
+            <p>Он обладает современной научной, учебной и технической базой. Наши выпускники успешно работают в научных учреждениях и на промышленных предприятиях практически всех отраслей экономики, как в Дагестане, так и в различных регионах России и за рубежом.</p>
+            <p class="person-highlight">Желаем вам здоровья и успехов! Уверены, что Дагестанский государственный технический университет для вас — это правильный выбор. Ждем вас в нашем университете.</p>
+        </div>
+    </div>
+</section>
+
+<section class="person-section person-section-alt">
+    <div class="person-container person-container-reverse">
+        <div class="person-text">
+            <div class="person-badge">ДЕКАН</div>
+            <h2>Абдусаламова Мадина Магомеддибировна</h2>
+            <p class="person-role">кандидат экономических наук, доцент</p>
+            <p>Миссия ФСПО ДГТУ — подготовка квалифицированных специалистов среднего звена, конкурентоспособных на рынке труда, готовых к постоянному профессиональному росту, социальной и профессиональной мобильности в соответствии с запросами и потребностями экономики Республики Дагестан.</p>
+            <p>ФСПО — это площадка для перехода из школы в вуз (школа - ФСПО - ВУЗ). Факультет уделяет каждому обучающемуся индивидуальное внимание и подготавливает студентов к университетским требованиям.</p>
+        </div>
+        <div class="person-photo">
+            <img src="{% static 'images/dean.png' %}" alt="Декан ФСПО ДГТУ">
+        </div>
+    </div>
+</section>
+
+{% endblock %}

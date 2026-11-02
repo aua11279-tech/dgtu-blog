@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}RuStore — ДГТУ{% endblock %}
+
+{% block content %}
+
+<style>
+/* Прячем лишнее для этой страницы */
+body { background: #000 !important; }
+.topbar, .site-footer { display: none !important; }
+
+.rustore-page {
+    min-height: calc(100vh - 80px);
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.rustore-gif {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 50px rgba(201,162,39,0.3);
+}
+
+.rustore-title {
+    font-size: 64px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a227;
+    margin: 0;
+    text-shadow: 0 4px 20px rgba(201,162,39,0.5);
+}
+
+@media (max-width: 700px) {
+    .rustore-title { font-size: 36px; }
+    .rustore-gif { max-width: 100%; }
+}
+</style>
+
+<div class="rustore-page">
+    <img src="{% static 'images/rustore.gif' %}" alt="Топай отсюда" class="rustore-gif">
+    <h1 class="rustore-title">Топай отсюда</h1>
+</div>
+
+{% endblock %}

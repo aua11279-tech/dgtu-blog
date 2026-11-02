@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card" style="max-width: 640px;">
+
+        <div class="auth-header">
+            <h1>Редактирование профиля</h1>
+            <p>Измените аватар, био и дату рождения</p>
+        </div>
+
+        <div class="auth-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-submit">Сохранить</button>
+            </form>
+        </div>
+
+        <div class="auth-footer">
+            <a href="{% url 'profile' %}">← Вернуться в кабинет</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Вход — ДГТУ{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <img src="{% static 'images/logo.png' %}" alt="ДГТУ" class="auth-logo">
+            <h1>Вход в кабинет</h1>
+            <p>Введите логин и пароль для входа</p>
+        </div>
+
+        <div class="auth-body">
+
+            {% if form.errors %}
+                <div class="alert alert-error">
+                    Неверное имя пользователя или пароль. Попробуйте ещё раз.
+                </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-submit">Войти</button>
+            </form>
+        </div>
+
+        <div class="auth-footer">
+            Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

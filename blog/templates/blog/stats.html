@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Статистика авторов{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Статистика авторов</h2>
+        <p>Количество статей и средняя длина текста по каждому автору.</p>
+
+        <table class="stats-table">
+            <thead>
+                <tr>
+                    <th>Автор</th>
+                    <th>Email</th>
+                    <th>Статей</th>
+                    <th>Средняя длина</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for author in authors %}
+                <tr>
+                    <td><strong>{{ author.username }}</strong></td>
+                    <td>{{ author.email|default:"—" }}</td>
+                    <td>{{ author.article_count }}</td>
+                    <td>{{ author.avg_length|floatformat:0 }} символов</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">Пока нет данных</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Все статьи{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Все статьи</h2>
+
+        <ul class="news-list">
+            {% for article in articles %}
+            <li>
+                <h3>{{ article.title }}</h3>
+                <div class="meta">
+                    {{ article.author.username }} · {{ article.published_date|date:"d.m.Y H:i" }}
+                </div>
+                <p>{{ article.content|truncatewords:20 }}</p>
+            </li>
+            {% empty %}
+            <li>Статей пока нет.</li>
+            {% endfor %}
+        </ul>
+
+        {% if is_paginated %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">← Назад</a>
+            {% endif %}
+            <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Вперёд →</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

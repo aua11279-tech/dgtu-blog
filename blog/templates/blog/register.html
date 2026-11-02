@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Регистрация — ДГТУ{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <img src="{% static 'images/logo.png' %}" alt="ДГТУ" class="auth-logo">
+            <h1>Регистрация</h1>
+            <p>Создайте аккаунт для доступа к кабинету студента</p>
+        </div>
+
+        <div class="auth-body">
+
+            <div class="auth-warning">
+                <strong>⚠️ Внимание при регистрации:</strong>
+                <ul>
+                    <li>Имя пользователя — только <b>английские</b> буквы</li>
+                    <li>Email — только <b>@mail.ru</b> или <b>@gmail.com</b></li>
+                    <li>Пароль — минимум 8 символов</li>
+                </ul>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-submit">Зарегистрироваться</button>
+            </form>
+        </div>
+
+        <div class="auth-footer">
+            Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Поиск — ДГТУ{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Поиск статей</h2>
+        <form method="get" class="search-form-page">
+            <input type="text" name="q" value="{{ q }}" placeholder="Введите ключевое слово..." autofocus>
+            <button type="submit">Найти</button>
+        </form>
+
+        {% if q %}
+            <p class="search-result-info">Найдено: <strong>{{ articles|length }}</strong> по запросу «{{ q }}»</p>
+            <ul class="news-list">
+                {% for article in articles %}
+                <li>
+                    <h3>{{ article.title }}</h3>
+                    <div class="meta">
+                        {{ article.author.username }} · {{ article.published_date|date:"d.m.Y" }}
+                    </div>
+                    <p>{{ article.content|truncatewords:25 }}</p>
+                </li>
+                {% empty %}
+                <li>По вашему запросу ничего не найдено.</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="search-result-info">Введите запрос выше — поиск идёт по заголовку, содержанию и тегам.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

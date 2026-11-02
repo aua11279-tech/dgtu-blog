@@ -1,0 +1,93 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}ДГТУ — Главная{% endblock %}
+
+{% block content %}
+
+<section class="hero-slider" id="heroSlider">
+    <div class="hero-slide active">
+        <div class="hero-slide-inner">
+            <div class="hero-slide-text">
+                <h1>ДГТУ — <span>центр подготовки инженерных кадров</span></h1>
+                <p>Дагестанский государственный технический университет</p>
+            </div>
+            <div class="hero-slide-image">
+                <img src="{% static 'images/logo_square.png' %}" alt="ДГТУ" class="logo-square">
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-slide">
+        <div class="hero-slide-inner">
+            <div class="hero-slide-text">
+                <h1>Экскурсия по <span>университету</span></h1>
+                <p>Прогуляйтесь по корпусам, лабораториям и аудиториям ДГТУ в формате 3D</p>
+                <a href="{% url 'excursion' %}" class="btn-hero">Узнать больше →</a>
+            </div>
+            <div class="hero-slide-image">
+                <img src="{% static 'images/building.png' %}" alt="Здание ДГТУ" class="logo-square">
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="slider-arrow prev" id="prevSlide">‹</button>
+    <button type="button" class="slider-arrow next" id="nextSlide">›</button>
+</section>
+
+<section class="cards-section">
+    <div class="cards-grid">
+
+        <a href="{% url 'postupayushim' %}" class="promo-card promo-card-priem">
+            <div class="promo-card-overlay"></div>
+            <div class="promo-card-content">
+                <h3>Приемная<br>комиссия</h3>
+                <span class="promo-card-btn">Узнать больше →</span>
+            </div>
+        </a>
+
+        <a href="{% url 'abiturient' %}" class="promo-card promo-card-abit">
+            <div class="promo-card-overlay"></div>
+            <div class="promo-card-content">
+                <h3>Абитуриенту<br>2026</h3>
+                <span class="promo-card-btn">Узнать больше →</span>
+            </div>
+        </a>
+
+        <a href="{% url 'faculties' %}" class="promo-card promo-card-faculty">
+            <div class="promo-card-overlay"></div>
+            <div class="promo-card-content">
+                <h3>Факультеты</h3>
+                <span class="promo-card-btn">Узнать больше →</span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<script>
+    (function() {
+        const slides = document.querySelectorAll('.hero-slide');
+        let current = 0;
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[n].classList.add('active');
+        }
+        const nextBtn = document.getElementById('nextSlide');
+        const prevBtn = document.getElementById('prevSlide');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                current = (current + 1) % slides.length;
+                showSlide(current);
+            });
+        }
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                current = (current - 1 + slides.length) % slides.length;
+                showSlide(current);
+            });
+        }
+    })();
+</script>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Кабинет студента{% endblock %}
+
+{% block content %}
+<div class="cabinet-page">
+    <div class="cabinet-card">
+
+        <div class="cabinet-header">
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="Аватар" class="cabinet-avatar">
+            {% else %}
+                <div class="cabinet-avatar-letter">{{ user.username|first|upper }}</div>
+            {% endif %}
+
+            <div class="cabinet-header-info">
+                <h1>{{ user.username }}</h1>
+                <p>📧 {{ user.email }}</p>
+                {% if user.profile.birth_date %}
+                    <p>🎂 {{ user.profile.birth_date|date:"d.m.Y" }}</p>
+                {% endif %}
+                {% if user.is_superuser %}
+                    <span class="cabinet-badge">Администратор</span>
+                {% else %}
+                    <span class="cabinet-badge">Студент</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="cabinet-actions">
+            <a href="{% url 'profile_edit' %}" class="cabinet-btn cabinet-btn-gold">✎ Редактировать профиль</a>
+            <a href="{% url 'password_change' %}" class="cabinet-btn cabinet-btn-navy">🔒 Сменить пароль</a>
+            <a href="{% url 'home' %}" class="cabinet-btn cabinet-btn-outline">← На главную</a>
+        </div>
+
+        <div class="cabinet-body">
+
+            <div class="cabinet-section">
+                <h2>Личная информация</h2>
+
+                <div class="cabinet-info-row">
+                    <div class="cabinet-info-label">Логин</div>
+                    <div class="cabinet-info-value">{{ user.username }}</div>
+                </div>
+
+                <div class="cabinet-info-row">
+                    <div class="cabinet-info-label">Email</div>
+                    <div class="cabinet-info-value">{{ user.email|default:"— не указан —" }}</div>
+                </div>
+
+                <div class="cabinet-info-row">
+                    <div class="cabinet-info-label">Дата рождения</div>
+                    <div class="cabinet-info-value">
+                        {% if user.profile.birth_date %}
+                            {{ user.profile.birth_date|date:"d.m.Y" }}
+                        {% else %}
+                            — не указана —
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="cabinet-info-row">
+                    <div class="cabinet-info-label">Дата регистрации</div>
+                    <div class="cabinet-info-value">{{ user.date_joined|date:"d.m.Y H:i" }}</div>
+                </div>
+
+                <div class="cabinet-info-row">
+                    <div class="cabinet-info-label">Последний вход</div>
+                    <div class="cabinet-info-value">{{ user.last_login|date:"d.m.Y H:i"|default:"—" }}</div>
+                </div>
+            </div>
+
+            {% if user.profile.bio %}
+            <div class="cabinet-section">
+                <h2>О себе</h2>
+                <p style="color: var(--text); font-size: 15px; line-height: 1.7;">{{ user.profile.bio }}</p>
+            </div>
+            {% endif %}
+
+            <div class="cabinet-section">
+                <h2>Мои статьи</h2>
+                {% if user.articles.all %}
+                    <ul class="news-list">
+                        {% for article in user.articles.all %}
+                            <li>
+                                <h3>{{ article.title }}</h3>
+                                <div class="meta">{{ article.published_date|date:"d.m.Y H:i" }}</div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="cabinet-empty">
+                        📝 У вас пока нет статей
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
