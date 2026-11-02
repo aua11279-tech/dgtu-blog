@@ -5,19 +5,10 @@
 
 {% block content %}
 
-<!-- Хлебные крошки -->
-<div class="breadcrumbs">
-    <div class="breadcrumbs-inner">
-        <a href="{% url 'home' %}">🏠 Главная</a>
-        <span>›</span>
-        <span>Поступающим</span>
-    </div>
-</div>
+<!-- Убрали блок breadcrumbs (домик) -->
 
-<!-- Основная сетка -->
 <div class="postup-page">
 
-    <!-- ЛЕВОЕ МЕНЮ -->
     <aside class="postup-sidebar">
         <a href="#" class="postup-sidebar-item">Прием 2026 <span>›</span></a>
         <a href="#" class="postup-sidebar-item">Образовательные программы <span>›</span></a>
@@ -33,21 +24,16 @@
         <a href="#" class="postup-sidebar-item">Задать вопрос <span>›</span></a>
     </aside>
 
-    <!-- ПРАВЫЙ КОНТЕНТ -->
     <main class="postup-content">
-
-        <!-- Заголовок с иконкой -->
         <div class="postup-title">
             <div class="postup-icon">🎓</div>
             <h1>ПОСТУПАЮЩИМ</h1>
         </div>
 
-        <!-- ФОТО БАННЕРА НА ВСЮ ШИРИНУ -->
         <div class="postup-banner-full">
             <img src="{% static 'images/banner_postup.png' %}" alt="Приемная комиссия ДГТУ">
         </div>
 
-        <!-- ТЕКСТ -->
         <div class="postup-text">
             <p>Наш век — век высоких технологий — немыслим без вычислительной техники и современного технического оборудования. Поэтому по мере развития рыночных реформ в нашей стране все большим спросом будут пользоваться специалисты, обладающие глубокими знаниями по техническим дисциплинам и имеющие навыки пользования сложным оборудованием. Именно такие знания и практические навыки вы сможете получить в Дагестанском государственном техническом университете.</p>
 

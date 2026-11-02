@@ -10,7 +10,6 @@
 body { background: #000 !important; margin: 0; padding: 0; }
 .topbar, .site-header, .site-footer { display: none !important; }
 
-/* Контейнер страницы */
 .rustore-page {
     min-height: 100vh;
     background: #000;
@@ -23,7 +22,7 @@ body { background: #000 !important; margin: 0; padding: 0; }
     position: relative;
 }
 
-/* Наша новая кнопка "На главную" */
+/* Кнопка "На главную" */
 .btn-home {
     position: absolute;
     top: 30px;
@@ -42,17 +41,17 @@ body { background: #000 !important; margin: 0; padding: 0; }
 }
 .btn-home:hover { background: #e0be4e; transform: translateY(-2px); }
 
-/* Картинка/Гифка */
+/* УВЕЛИЧИЛИ ГИФКУ В 2 РАЗА */
 .rustore-gif {
-    max-width: 90%;
-    max-height: 65vh; /* Ограничиваем высоту, чтобы влез текст */
+    width: 100%;
+    max-width: 1400px; /* Было 700px, стало 1400px */
+    max-height: 80vh; /* Почти на весь экран по высоте */
     border-radius: 16px;
     margin-bottom: 30px;
     box-shadow: none !important;
     object-fit: contain;
 }
 
-/* Текст под картинкой */
 .rustore-title {
     font-size: 54px;
     font-weight: 900;
@@ -71,13 +70,8 @@ body { background: #000 !important; margin: 0; padding: 0; }
 </style>
 
 <div class="rustore-page">
-    <!-- Кнопка на главную -->
     <a href="{% url 'home' %}" class="btn-home">На главную</a>
-    
-    <!-- Гифка -->
     <img src="{% static 'images/rustore.gif' %}" alt="Топай отсюда" class="rustore-gif">
-    
-    <!-- Текст снизу -->
     <h1 class="rustore-title">Топай отсюда</h1>
 </div>
 

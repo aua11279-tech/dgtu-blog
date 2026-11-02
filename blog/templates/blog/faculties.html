@@ -6,11 +6,7 @@
 {% block content %}
 
 <style>
-.breadcrumbs { background: #f0f2f5; border-bottom: 1px solid #e5e7eb; padding: 14px 20px; }
-.breadcrumbs-inner { max-width: 1400px; margin: 0 auto; font-size: 14px; color: #6b7280; }
-.breadcrumbs-inner a { color: #1a2b4a; text-decoration: none; font-weight: 600; }
-.breadcrumbs-inner a:hover { color: #c9a227; }
-.breadcrumbs-inner span { margin: 0 8px; }
+/* Убрали стили для breadcrumbs, так как самого блока больше нет */
 
 .fac-hero { background: linear-gradient(135deg, #1a2b4a 0%, #0f1c33 100%); padding: 60px 20px; color: #fff; border-bottom: 4px solid #c9a227; }
 .fac-hero-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; }
@@ -40,13 +36,7 @@
 }
 </style>
 
-<div class="breadcrumbs">
-    <div class="breadcrumbs-inner">
-        <a href="{% url 'home' %}">🏠 Главная</a>
-        <span>›</span>
-        <span>Факультеты</span>
-    </div>
-</div>
+<!-- Убрали блок breadcrumbs (домик) -->
 
 <section class="fac-hero">
     <div class="fac-hero-inner">
