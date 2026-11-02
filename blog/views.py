@@ -115,3 +115,7 @@ def faculties(request):
 
 def rustore(request):
     return render(request, 'blog/rustore.html')
+
+
+def college_joke(request):
+    return render(request, 'blog/college_joke.html')

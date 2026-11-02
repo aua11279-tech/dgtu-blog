@@ -6,13 +6,7 @@
 {% block content %}
 
 <style>
-.breadcrumbs { background: #f0f2f5; border-bottom: 1px solid #e5e7eb; padding: 14px 20px; }
-.breadcrumbs-inner { max-width: 1400px; margin: 0 auto; font-size: 14px; color: #6b7280; }
-.breadcrumbs-inner a { color: #1a2b4a; text-decoration: none; font-weight: 600; }
-.breadcrumbs-inner a:hover { color: #c9a227; }
-.breadcrumbs-inner span { margin: 0 8px; }
-
-.abitur-hero { background: linear-gradient(135deg, #f0f2f5 0%, #e8ebf0 100%); padding: 50px 20px; }
+.abitur-hero { background: linear-gradient(135deg, #f0f2f5 0%, #e8ebf0 100%); padding: 50px 20px 120px 20px; }
 .abitur-hero-inner { max-width: 1500px; margin: 0 auto; display: grid; grid-template-columns: 1fr 420px 1.4fr; gap: 32px; align-items: stretch; }
 .abitur-hero-text { display: flex; flex-direction: column; justify-content: center; }
 .abitur-hero-text h1 { font-size: 34px; color: #1a2b4a; line-height: 1.2; margin: 0 0 20px; font-weight: 700; }
@@ -24,15 +18,14 @@
 .abitur-hero-faculties { display: flex; flex-direction: column; justify-content: center; align-items: center; }
 .abitur-faculties-grid { display: flex; flex-direction: column; width: 100%; max-width: 600px; gap: 12px; margin-bottom: 16px; }
 
+/* УБРАЛИ АНИМАЦИЮ */
 .abitur-faculty-item { 
     display: flex; align-items: center; justify-content: center; gap: 12px; 
     padding: 24px 20px; background: #fff; border-radius: 10px; 
     text-decoration: none; color: #1a2b4a; font-size: 18px; font-weight: 700; 
     text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.08); 
-    border-left: 4px solid transparent; transition: 0.3s; 
+    border-left: 4px solid transparent; 
 }
-.abitur-faculty-item:hover { border-left-color: #c9a227; transform: translateY(-3px); color: #c9a227; }
-.abitur-faculty-icon { font-size: 28px; }
 
 .btn-priem-kampania { display: block; width: 100%; max-width: 600px; padding: 18px; background: linear-gradient(135deg, #1a2b4a 0%, #0f1c33 100%); color: #fff; text-decoration: none; text-align: center; border-radius: 10px; font-size: 16px; font-weight: 700; letter-spacing: 0.5px; transition: 0.3s; border-left: 4px solid #c9a227; }
 .btn-priem-kampania:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(26,43,74,0.25); }
@@ -56,16 +49,9 @@
     .person-role { font-size: 15px; padding: 12px 20px; }
     .person-text p { font-size: 15px; }
     .person-section { padding: 50px 16px; }
+    .abitur-hero { padding-bottom: 80px; }
 }
 </style>
-
-<div class="breadcrumbs">
-    <div class="breadcrumbs-inner">
-        <a href="{% url 'home' %}">🏠 Главная</a>
-        <span>›</span>
-        <span>Абитуриенту 2026</span>
-    </div>
-</div>
 
 <section class="abitur-hero">
     <div class="abitur-hero-inner">
@@ -80,10 +66,10 @@
 
         <div class="abitur-hero-faculties">
             <div class="abitur-faculties-grid">
-                <a href="#" class="abitur-faculty-item">
+                <div class="abitur-faculty-item">
                     <span class="abitur-faculty-icon">💻</span>
                     <span>Факультет компьютерных технологий и энергетики</span>
-                </a>
+                </div>
             </div>
             <a href="#" class="btn-priem-kampania">Приемная кампания 2026 года</a>
         </div>

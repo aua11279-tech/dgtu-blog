@@ -6,12 +6,11 @@
 {% block content %}
 
 <style>
-/* Прячем лишнее для этой страницы */
 body { background: #000 !important; }
-.topbar, .site-footer { display: none !important; }
+header, .topbar, .site-footer { display: none !important; }
 
 .rustore-page {
-    min-height: calc(100vh - 80px);
+    min-height: 100vh;
     background: #000;
     color: #fff;
     display: flex;
@@ -27,7 +26,7 @@ body { background: #000 !important; }
     max-width: 700px;
     border-radius: 16px;
     margin-bottom: 40px;
-    box-shadow: 0 0 50px rgba(201,162,39,0.3);
+    box-shadow: none !important; 
 }
 
 .rustore-title {
@@ -35,9 +34,9 @@ body { background: #000 !important; }
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #c9a227;
+    color: #ffffff; 
     margin: 0;
-    text-shadow: 0 4px 20px rgba(201,162,39,0.5);
+    text-shadow: none !important; 
 }
 
 @media (max-width: 700px) {

@@ -21,4 +21,5 @@ urlpatterns = [
     path('abiturient/', views.abiturient, name='abiturient'),
     path('faculties/', views.faculties, name='faculties'),
     path('rustore/', views.rustore, name='rustore'),
+    path('college-joke/', views.college_joke, name='college_joke'),
 ]
