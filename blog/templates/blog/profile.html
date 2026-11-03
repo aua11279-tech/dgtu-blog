@@ -32,15 +32,14 @@
             <a href="{% url 'profile_edit' %}" class="cabinet-btn cabinet-btn-gold">✎ Редактировать профиль</a>
             <a href="{% url 'password_change' %}" class="cabinet-btn cabinet-btn-navy">🔒 Сменить пароль</a>
             
-            <!-- НОВАЯ КНОПКА ВЫХОДА -->
             <form method="post" action="{% url 'logout' %}" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit" class="cabinet-btn cabinet-btn-outline" style="border-color: #dc3545; color: #dc3545;">
                     🚪 Выйти из аккаунта
                 </button>
             </form>
-
-            <a href="{% url 'home' %}" class="cabinet-btn cabinet-btn-outline">← На главную</a>
+            
+            <!-- Кнопку "На главную" убрали -->
         </div>
 
         <div class="cabinet-body">
@@ -87,24 +86,8 @@
             </div>
             {% endif %}
 
-            <div class="cabinet-section">
-                <h2>Мои статьи</h2>
-                {% if user.articles.all %}
-                    <ul class="news-list">
-                        {% for article in user.articles.all %}
-                            <li>
-                                <h3>{{ article.title }}</h3>
-                                <div class="meta">{{ article.published_date|date:"d.m.Y H:i" }}</div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <div class="cabinet-empty">
-                        📝 У вас пока нет статей
-                    </div>
-                {% endif %}
-            </div>
-
+            <!-- Блок "Мои статьи" полностью удален -->
+            
         </div>
     </div>
 </div>
