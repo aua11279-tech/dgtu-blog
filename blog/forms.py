@@ -3,14 +3,10 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
+from .models import Profile
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(
-        required=True,
-        label='Email',
-        help_text='Только @mail.ru или @gmail.com'
-    )
+    email = forms.EmailField(required=True, label='Email')
 
     class Meta:
         model = User
@@ -27,24 +23,12 @@ class CustomUserCreationForm(UserCreationForm):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if not re.match(r'^[A-Za-z0-9@./+\-_]+$', username):
-            raise ValidationError(
-                'Имя пользователя должно содержать только английские буквы, '
-                'цифры и символы @/./+/-/_'
-            )
+            raise ValidationError('Имя пользователя должно содержать только английские буквы, цифры и символы @/./+/-/_')
         return username
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if not email.endswith('@mail.ru') and not email.endswith('@gmail.com'):
-            raise ValidationError(
-                'Email должен заканчиваться на @mail.ru или @gmail.com'
-            )
-        return email
 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        from .models import Profile
         model = Profile
         fields = ('avatar', 'bio', 'birth_date')
         widgets = {
@@ -57,6 +41,15 @@ class ProfileForm(forms.ModelForm):
         }
 
 
+class OTPForm(forms.Form):
+    code = forms.CharField(
+        max_length=16, 
+        label='Код из письма',
+        widget=forms.TextInput(attrs={'placeholder': 'Введите 16-значный код'})
+    )
+
+
+# ВОТ ТА САМАЯ ФОРМА, КОТОРОЙ НЕ ХВАТАЛО
 class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

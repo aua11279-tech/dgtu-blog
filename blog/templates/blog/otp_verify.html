@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+{% block title %}Введите код{% endblock %}
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1>Введите код</h1>
+            <p>Мы отправили 16-значный код на вашу почту</p>
+        </div>
+        <div class="auth-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-submit">Подтвердить</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
