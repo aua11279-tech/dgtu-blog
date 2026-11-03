@@ -31,6 +31,15 @@
         <div class="cabinet-actions">
             <a href="{% url 'profile_edit' %}" class="cabinet-btn cabinet-btn-gold">✎ Редактировать профиль</a>
             <a href="{% url 'password_change' %}" class="cabinet-btn cabinet-btn-navy">🔒 Сменить пароль</a>
+            
+            <!-- НОВАЯ КНОПКА ВЫХОДА -->
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="cabinet-btn cabinet-btn-outline" style="border-color: #dc3545; color: #dc3545;">
+                    🚪 Выйти из аккаунта
+                </button>
+            </form>
+
             <a href="{% url 'home' %}" class="cabinet-btn cabinet-btn-outline">← На главную</a>
         </div>
 
