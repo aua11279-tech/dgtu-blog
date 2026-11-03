@@ -202,5 +202,6 @@ EMAIL_USE_TLS = True
 
 # ВСТАВЬ СВОИ ДАННЫЕ:
 EMAIL_HOST_USER = 'aua11279@gmail.com'          # Например: aua11279@gmail.com
-EMAIL_HOST_PASSWORD = 'твой_пароль_приложения'    # 16-значный код из настроек Google
+EMAIL_HOST_PASSWORD = 'qxns thpm jofj qnmy'    # 16-значный код из настроек Google
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_CHARSET = 'utf-8'

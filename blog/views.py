@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import Q, Count, Avg
 from django.views.generic import ListView
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage  # Добавили EmailMessage
 from django.conf import settings
 from django.contrib.auth.views import LoginView
 
@@ -45,12 +45,15 @@ def register(request):
             profile.otp_code = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
             profile.save()
             
-            send_mail(
-                'Подтверждение регистрации',
-                f'Ваш код подтверждения: {profile.otp_code}',
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email]
+            # Используем EmailMessage с кодировкой utf-8
+            email = EmailMessage(
+                subject='Подтверждение регистрации',
+                body=f'Ваш код подтверждения: {profile.otp_code}',
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[user.email],
             )
+            email.encoding = 'utf-8'
+            email.send()
             
             request.session['verify_user_id'] = user.id
             messages.info(request, 'Код отправлен на вашу почту.')
@@ -69,12 +72,15 @@ class CustomLoginView(LoginView):
         profile.otp_code = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
         profile.save()
         
-        send_mail(
-            'Код для входа',
-            f'Ваш код для входа: {profile.otp_code}',
-            settings.DEFAULT_FROM_EMAIL,
-            [user.email]
+        # Используем EmailMessage с кодировкой utf-8
+        email = EmailMessage(
+            subject='Код для входа',
+            body=f'Ваш код для входа: {profile.otp_code}',
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[user.email],
         )
+        email.encoding = 'utf-8'
+        email.send()
         
         self.request.session['verify_user_id'] = user.id
         return redirect('verify_otp')
@@ -178,3 +184,5 @@ def rustore(request):
 
 def college_joke(request):
     return render(request, 'blog/college_joke.html')
+def clown_joke(request):
+    return render(request, 'blog/clown_joke.html')

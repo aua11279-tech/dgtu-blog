@@ -6,8 +6,6 @@
 {% block content %}
 
 <style>
-/* Убрали стили для breadcrumbs, так как самого блока больше нет */
-
 .fac-hero { background: linear-gradient(135deg, #1a2b4a 0%, #0f1c33 100%); padding: 60px 20px; color: #fff; border-bottom: 4px solid #c9a227; }
 .fac-hero-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; }
 .fac-hero-text h1 { font-size: 42px; font-weight: 700; margin: 0 0 16px; color: #fff; line-height: 1.2; }
@@ -36,8 +34,6 @@
 }
 </style>
 
-<!-- Убрали блок breadcrumbs (домик) -->
-
 <section class="fac-hero">
     <div class="fac-hero-inner">
         <div class="fac-hero-text">
@@ -58,37 +54,37 @@
             <div class="fac-card">
                 <h3>Факультет компьютерных технологий и энергетики</h3>
                 <p>Программирование, IT, энергетика, автоматизация.</p>
-                <a href="#">Подробнее</a>
+                <a href="{% url 'clown_joke' %}">Подробнее</a>
             </div>
             <div class="fac-card">
                 <h3>Архитектурно-строительный факультет</h3>
                 <p>Архитектура, строительство, дизайн, урбанистика.</p>
-                <a href="#">Подробнее</a>
+                <a href="{% url 'clown_joke' %}">Подробнее</a>
             </div>
             <div class="fac-card">
                 <h3>Факультет радиоэлектроники и биотехнических систем</h3>
                 <p>Электроника, робототехника, биомедицинская техника.</p>
-                <a href="#">Подробнее</a>
+                <a href="{% url 'clown_joke' %}">Подробнее</a>
             </div>
             <div class="fac-card">
                 <h3>Технологический факультет</h3>
                 <p>Технологии пищевых производств, переработка ресурсов.</p>
-                <a href="#">Подробнее</a>
+                <a href="{% url 'clown_joke' %}">Подробнее</a>
             </div>
             <div class="fac-card">
                 <h3>Факультет нефти, газа и природообустройства</h3>
                 <p>Добыча, переработка, экология, геология.</p>
-                <a href="#">Подробнее</a>
+                <a href="{% url 'clown_joke' %}">Подробнее</a>
             </div>
             <div class="fac-card">
                 <h3>Факультет информационных систем в экономике и управлении</h3>
                 <p>Анализ данных, бизнес-информатика, управление.</p>
-                <a href="#">Подробнее</a>
+                <a href="{% url 'clown_joke' %}">Подробнее</a>
             </div>
             <div class="fac-card">
                 <h3>Факультет среднего профессионального образования (ФСПО)</h3>
                 <p>Колледж, подготовка специалистов среднего звена.</p>
-                <a href="#">Подробнее</a>
+                <a href="{% url 'clown_joke' %}">Подробнее</a>
             </div>
         </div>
     </div>

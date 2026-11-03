@@ -7,7 +7,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('register/', views.register, name='register'),
     path('verify-otp/', views.verify_otp, name='verify_otp'),
-    
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
@@ -25,4 +24,7 @@ urlpatterns = [
     path('faculties/', views.faculties, name='faculties'),
     path('rustore/', views.rustore, name='rustore'),
     path('college-joke/', views.college_joke, name='college_joke'),
+    
+    # НОВЫЙ МАРШРУТ
+    path('clown-joke/', views.clown_joke, name='clown_joke'),
 ]
