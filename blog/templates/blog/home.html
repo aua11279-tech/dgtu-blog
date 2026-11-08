@@ -6,7 +6,24 @@
 {% block content %}
 
 <style>
-/* === БЛОК С КОЛЛЕДЖЕМ === */
+/* === СЛАЙДЕР (ДЕСКТОП) === */
+.hero-slider { position: relative; min-height: 520px; overflow: hidden; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); }
+.hero-slide { position: absolute; inset: 0; display: flex; align-items: center; opacity: 0; transition: opacity 0.6s ease; padding: 40px 20px; pointer-events: none; }
+.hero-slide.active { opacity: 1; pointer-events: auto; }
+.hero-slide-inner { max-width: 1400px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "text image" "btn image"; gap: 40px; align-items: center; }
+.hero-slide-text { grid-area: text; }
+.hero-slide-text h1 { font-size: 44px; color: var(--white); line-height: 1.15; margin: 0 0 24px; font-weight: 700; }
+.hero-slide-text h1 span { color: var(--gold); }
+.hero-slide-text p { color: #cbd5e1; font-size: 17px; margin: 0; }
+.hero-slide-image { grid-area: image; display: flex; justify-content: center; align-items: center; }
+.logo-square { width: 100%; max-width: 520px; height: auto; max-height: 420px; object-fit: contain; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+.btn-hero { grid-area: btn; justify-self: start; display: inline-block; padding: 14px 32px; background: var(--gold); color: var(--navy-dark); text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 16px; transition: 0.3s; }
+.btn-hero:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+.slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.95); color: var(--navy); border: 3px solid var(--gold); width: 60px; height: 60px; font-size: 32px; font-weight: 700; cursor: pointer; border-radius: 50%; transition: 0.3s; z-index: 10; display: flex; align-items: center; justify-content: center; padding-bottom: 6px; }
+.slider-arrow.prev { left: 24px; } .slider-arrow.next { right: 24px; }
+
+/* === БЛОК КОЛЛЕДЖА === */
 .college-promo { padding: 60px 20px; background: #f4f5f7; border-top: 1px solid #e5e7eb; }
 .college-promo-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
 .college-promo-img { display: flex; justify-content: center; }
@@ -47,32 +64,41 @@
     .college-promo-text h2 { font-size: 36px; }
 }
 
-/* === АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ (до 992px) === */
+/* === ПОЛНАЯ АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ (до 992px) === */
 @media (max-width: 992px) {
-    .college-promo-inner { 
-        grid-template-columns: 1fr; /* Картинка и текст друг под другом */
-        text-align: center; 
-        gap: 30px; 
-    }
-    .college-promo-text h2 { font-size: 28px; }
-    .college-promo-img img { max-width: 100%; }
+    /* Слайдер на телефоне */
+    .hero-slider { min-height: auto; padding-bottom: 20px; }
+    .hero-slide { position: relative; padding: 30px 15px 60px; }
+    .hero-slide-inner { display: flex; flex-direction: column; text-align: center; gap: 20px; }
+    .hero-slide-text { order: 1; }
+    .hero-slide-text h1 { font-size: 28px; margin-bottom: 15px; }
+    .hero-slide-text p { font-size: 15px; margin-bottom: 0; }
     
-    .life-grid { grid-template-columns: 1fr; } /* 1 колонка */
-    .life-header { text-align: center; }
-    .life-header h2 { font-size: 26px; border-left: none; padding-left: 0; border-bottom: 4px solid var(--gold); padding-bottom: 10px; }
+    /* Картинка и кнопка */
+    .hero-slide-image { order: 2; margin: 15px auto; width: 100%; }
+    .logo-square { max-width: 100%; max-height: 220px; object-fit: contain; }
+    .btn-hero { order: 3; align-self: center; margin-top: 10px; }
     
-    .events-grid { grid-template-columns: 1fr; } /* 1 колонка */
-    .events-header h2 { font-size: 26px; text-align: center; }
+    /* Стрелки по бокам от картинки */
+    .slider-arrow { top: 55%; width: 36px; height: 36px; font-size: 18px; border-width: 2px; }
+    .slider-arrow.prev { left: 10px; } .slider-arrow.next { right: 10px; }
 
-    .life-card img { height: auto; max-height: 250px; } /* Картинки не сплющиваются */
-    .event-card img { height: auto; max-height: 220px; }
-    
+    /* Остальные блоки в 1 колонку */
+    .college-promo-inner { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+    .college-promo-text h2 { font-size: 28px; }
+    .life-grid { grid-template-columns: 1fr; }
+    .life-header { text-align: center; }
+    .life-header h2 { font-size: 26px; border-left: none; border-bottom: 4px solid var(--gold); padding-left: 0; padding-bottom: 10px; }
+    .events-grid { grid-template-columns: 1fr; }
+    .events-header h2 { font-size: 26px; text-align: center; }
+    .life-card img, .event-card img { height: auto; max-height: 250px; }
     .college-promo, .life-section, .events-section { padding: 40px 15px; }
 }
 </style>
 
 <!-- 1. СЛАЙДЕР -->
 <section class="hero-slider" id="heroSlider">
+    <!-- Слайд 1 -->
     <div class="hero-slide active">
         <div class="hero-slide-inner">
             <div class="hero-slide-text">
@@ -84,18 +110,20 @@
             </div>
         </div>
     </div>
+    <!-- Слайд 2 -->
     <div class="hero-slide">
         <div class="hero-slide-inner">
             <div class="hero-slide-text">
                 <h1>Экскурсия по <span>университету</span></h1>
                 <p>Прогуляйтесь по корпусам, лабораториям и аудиториям ДГТУ в формате 3D</p>
-                <a href="{% url 'excursion' %}" class="btn-hero">Узнать больше →</a>
             </div>
             <div class="hero-slide-image">
                 <img src="{% static 'images/building.png' %}" alt="Здание ДГТУ" class="logo-square">
             </div>
+            <a href="{% url 'excursion' %}" class="btn-hero">Узнать больше →</a>
         </div>
     </div>
+
     <button type="button" class="slider-arrow prev" id="prevSlide">‹</button>
     <button type="button" class="slider-arrow next" id="nextSlide">›</button>
 </section>
@@ -149,48 +177,12 @@
             <p>Часть научной и инновационной структуры Республики Дагестан и СКФО. Основное преимущество университета заключается в сочетании научно-исследовательской, инновационной и образовательной деятельности, отвечающей современным потребностям общества.</p>
         </div>
         <div class="life-grid">
-            <div class="life-card">
-                <img src="{% static 'images/life1.png' %}" alt="Качественное образование">
-                <div class="life-card-content">
-                    <h3>Качественное образование</h3>
-                    <p>Студентов обучают квалифицированные педагоги-практики, среди которых преподаватели ведущих вузов страны.</p>
-                </div>
-            </div>
-            <div class="life-card">
-                <img src="{% static 'images/life2.png' %}" alt="Наука и техническое творчество">
-                <div class="life-card-content">
-                    <h3>Наука и техническое творчество</h3>
-                    <p>Более 50 направлений научной и изобретательской работы.</p>
-                </div>
-            </div>
-            <div class="life-card">
-                <img src="{% static 'images/life3.png' %}" alt="Высокие стипендии">
-                <div class="life-card-content">
-                    <h3>Высокие стипендии</h3>
-                    <p>Академическая: 2750₽ - 11875₽. Социальная: 4125₽ - 11562₽. Именные: до 10000₽.</p>
-                </div>
-            </div>
-            <div class="life-card">
-                <img src="{% static 'images/life4.png' %}" alt="Интересная студенческая жизнь">
-                <div class="life-card-content">
-                    <h3>Интересная студенческая жизнь</h3>
-                    <p>Студенческие клубы по интересам, хореографические ансамбли, спортивные секции, КВН и многое другое.</p>
-                </div>
-            </div>
-            <div class="life-card">
-                <img src="{% static 'images/life5.png' %}" alt="Профессиональные спортплощадки">
-                <div class="life-card-content">
-                    <h3>Профессиональные спортплощадки</h3>
-                    <p>Плавательный бассейн, пятиэтажный скалодром, футбольные поля, площадки баскетбола, стритбола и воркаута.</p>
-                </div>
-            </div>
-            <div class="life-card">
-                <img src="{% static 'images/life6.png' %}" alt="Комфортные общежития">
-                <div class="life-card-content">
-                    <h3>Комфортные общежития</h3>
-                    <p>Студенческий кампус ДГТУ, признанный лучшим в республике, санаторий-профилакторий для отдыха студентов.</p>
-                </div>
-            </div>
+            <div class="life-card"><img src="{% static 'images/life1.png' %}" alt="..."><div class="life-card-content"><h3>Качественное образование</h3><p>Студентов обучают квалифицированные педагоги-практики, среди которых преподаватели ведущих вузов страны.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life2.png' %}" alt="..."><div class="life-card-content"><h3>Наука и техническое творчество</h3><p>Более 50 направлений научной и изобретательской работы.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life3.png' %}" alt="..."><div class="life-card-content"><h3>Высокие стипендии</h3><p>Академическая: 2750₽ - 11875₽. Социальная: 4125₽ - 11562₽. Именные: до 10000₽.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life4.png' %}" alt="..."><div class="life-card-content"><h3>Интересная студенческая жизнь</h3><p>Студенческие клубы по интересам, хореографические ансамбли, спортивные секции, КВН и многое другое.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life5.png' %}" alt="..."><div class="life-card-content"><h3>Профессиональные спортплощадки</h3><p>Плавательный бассейн, пятиэтажный скалодром, футбольные поля, площадки баскетбола, стритбола и воркаута.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life6.png' %}" alt="..."><div class="life-card-content"><h3>Комфортные общежития</h3><p>Студенческий кампус ДГТУ, признанный лучшим в республике, санаторий-профилакторий для отдыха студентов.</p></div></div>
         </div>
     </div>
 </section>
@@ -198,42 +190,12 @@
 <!-- 5. МЕРОПРИЯТИЯ -->
 <section class="events-section">
     <div class="events-container">
-        <div class="events-header">
-            <h2>Мероприятия</h2>
-        </div>
+        <div class="events-header"><h2>Мероприятия</h2></div>
         <div class="events-grid">
-            <div class="event-card">
-                <img src="{% static 'images/event1.jpeg' %}" alt="ТехноСпортФест">
-                <div class="event-card-content">
-                    <div class="event-date">28 сентября 2026 г.</div>
-                    <h3 class="event-title">ТехноСпортФест 2026: финальные мероприятия в...</h3>
-                    <span class="event-tag">Мероприятия</span>
-                </div>
-            </div>
-            <div class="event-card">
-                <img src="{% static 'images/event2.jpeg' %}" alt="Доступ к платформе">
-                <div class="event-card-content">
-                    <div class="event-date">28 сентября 2026 г.</div>
-                    <h3 class="event-title">Доступ к платформе психологической поддерж...</h3>
-                    <span class="event-tag">Мероприятия</span>
-                </div>
-            </div>
-            <div class="event-card">
-                <img src="{% static 'images/event3.png' %}" alt="Экспериментальная физика">
-                <div class="event-card-content">
-                    <div class="event-date">25 ноября 2025 г.</div>
-                    <h3 class="event-title">Экспериментальная физика для школьников: ДГТУ ста...</h3>
-                    <span class="event-tag">В центре внимания</span>
-                </div>
-            </div>
-            <div class="event-card">
-                <img src="{% static 'images/event4.png' %}" alt="Даргинцы">
-                <div class="event-card-content">
-                    <div class="event-date">20 ноября 2025 г.</div>
-                    <h3 class="event-title">В ДГТУ стартовал фестиваль этнической культуры...</h3>
-                    <span class="event-tag">В центре внимания</span>
-                </div>
-            </div>
+            <div class="event-card"><img src="{% static 'images/event1.jpeg' %}" alt="..."><div class="event-card-content"><div class="event-date">28 сентября 2026 г.</div><h3 class="event-title">ТехноСпортФест 2026: финальные мероприятия в...</h3><span class="event-tag">Мероприятия</span></div></div>
+            <div class="event-card"><img src="{% static 'images/event2.jpeg' %}" alt="..."><div class="event-card-content"><div class="event-date">28 сентября 2026 г.</div><h3 class="event-title">Доступ к платформе психологической поддерж...</h3><span class="event-tag">Мероприятия</span></div></div>
+            <div class="event-card"><img src="{% static 'images/event3.png' %}" alt="..."><div class="event-card-content"><div class="event-date">25 ноября 2025 г.</div><h3 class="event-title">Экспериментальная физика для школьников: ДГТУ ста...</h3><span class="event-tag">В центре внимания</span></div></div>
+            <div class="event-card"><img src="{% static 'images/event4.png' %}" alt="..."><div class="event-card-content"><div class="event-date">20 ноября 2025 г.</div><h3 class="event-title">В ДГТУ стартовал фестиваль этнической культуры...</h3><span class="event-tag">В центре внимания</span></div></div>
         </div>
     </div>
 </section>
@@ -242,24 +204,9 @@
     (function() {
         const slides = document.querySelectorAll('.hero-slide');
         let current = 0;
-        function showSlide(n) {
-            slides.forEach(s => s.classList.remove('active'));
-            slides[n].classList.add('active');
-        }
-        const nextBtn = document.getElementById('nextSlide');
-        const prevBtn = document.getElementById('prevSlide');
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                current = (current + 1) % slides.length;
-                showSlide(current);
-            });
-        }
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                current = (current - 1 + slides.length) % slides.length;
-                showSlide(current);
-            });
-        }
+        function showSlide(n) { slides.forEach(s => s.classList.remove('active')); slides[n].classList.add('active'); }
+        document.getElementById('nextSlide').addEventListener('click', function() { current = (current + 1) % slides.length; showSlide(current); });
+        document.getElementById('prevSlide').addEventListener('click', function() { current = (current - 1 + slides.length) % slides.length; showSlide(current); });
     })();
 </script>
 
