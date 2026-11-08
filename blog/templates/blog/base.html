@@ -8,26 +8,12 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <style>
-
-
-  
-    /* ===== ШАПКА ===== */
+    /* ===== ОБЩАЯ ШАПКА ===== */
     .site-header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 16px 28px;
-        min-height: 92px;
-        flex-wrap: wrap;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 20px; padding: 16px 28px; min-height: 92px; flex-wrap: wrap;
     }
-
-    .logo-block {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-shrink: 0;
-    }
+    .logo-block { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .logo-link { display: block; cursor: default; pointer-events: none; }
     .logo-link img {
         height: 68px; width: 68px; object-fit: cover; border-radius: 50%;
@@ -38,178 +24,45 @@
         background: linear-gradient(135deg, #c9a227 0%, #e0be4e 100%);
         color: #0f1c33; text-decoration: none; border-radius: 8px;
         font-size: 13px; font-weight: 700; text-transform: uppercase;
-        letter-spacing: 0.4px; transition: 0.3s; white-space: nowrap;
-        box-shadow: 0 4px 12px rgba(201,162,39,0.25);
+        transition: 0.3s; white-space: nowrap;
     }
-    .btn-home:hover { background: #1a2b4a; color: #fff; transform: translateY(-1px); }
+    .btn-home:hover { background: #1a2b4a; color: #fff; }
 
-    .main-nav {
-        display: flex; gap: 18px; align-items: center; flex: 1;
-        justify-content: center; flex-wrap: wrap;
-    }
-    .main-nav .nav-item {
-        font-size: 13px !important; font-weight: 700 !important;
-        letter-spacing: 0.3px !important; padding: 8px 0 !important;
-        white-space: nowrap;
-    }
+    .main-nav { display: flex; gap: 18px; align-items: center; flex: 1; justify-content: center; flex-wrap: wrap; }
+    .main-nav .nav-item { font-size: 13px !important; font-weight: 700 !important; white-space: nowrap; }
     .menu-btn {
         padding: 10px 18px !important; font-size: 13px !important;
         white-space: nowrap; border-radius: 8px; line-height: 1.2;
     }
 
     .user-menu { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
-    .search-btn {
-        width: 44px !important; height: 44px !important; font-size: 18px !important;
-        flex-shrink: 0; padding: 0 !important; line-height: 1;
-    }
-    .btn-student {
-        padding: 11px 18px !important; font-size: 13px !important;
-        white-space: nowrap; flex-shrink: 0; line-height: 1.2;
-    }
-    .btn-student .icon-user { font-size: 15px !important; }
+    .search-btn { width: 44px !important; height: 44px !important; font-size: 18px !important; padding: 0 !important; }
+    .btn-student { padding: 11px 18px !important; font-size: 13px !important; white-space: nowrap; }
 
-    /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ШАПКИ ===== */
-    @media (max-width: 1400px) {
-        .main-nav .nav-item { font-size: 12px !important; }
-        .main-nav { gap: 14px; }
-        .btn-student { padding: 10px 14px !important; font-size: 12px !important; }
-        .btn-home { padding: 10px 14px; font-size: 12px; }
-    }
+    /* ===== АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ (до 992px) ===== */
     @media (max-width: 992px) {
-        .site-header-inner { padding: 10px 15px; min-height: auto; justify-content: center; }
-        .logo-block { width: 100%; justify-content: center; margin-bottom: 10px; }
-        .main-nav { width: 100%; justify-content: center; order: 3; margin-top: 10px; }
-        .user-menu { width: 100%; justify-content: center; order: 2; }
-        /* Прячем обычные ссылки, чтобы не было каши, оставляем только кнопку Меню */
+        .site-header-inner {
+            flex-direction: column; /* Выстраиваем всё в колонку */
+            padding: 15px; gap: 15px; min-height: auto;
+        }
+        .logo-block { width: 100%; justify-content: center; } /* Логотип по центру */
+        .user-menu { width: 100%; justify-content: center; }  /* Поиск и кабинет по центру */
+        
+        .main-nav { width: 100%; justify-content: center; }
+        /* Скрываем длинные ссылки, оставляем только кнопку Меню */
         .main-nav .nav-item, .main-nav .nav-dropdown { display: none; }
-        .menu-btn { display: block !important; width: 100%; max-width: 250px; margin: 0 auto; }
+        .menu-btn { 
+            display: block !important; 
+            width: 100%; 
+            max-width: 300px; 
+            margin: 0 auto; 
+            text-align: center;
+        }
     }
     @media (max-width: 480px) {
-        .logo-link img { height: 50px; width: 50px; }
-        .btn-home { font-size: 11px; padding: 8px 12px; }
-        .btn-student { font-size: 11px !important; padding: 8px 12px !important; }
-        .search-btn { width: 38px !important; height: 38px !important; font-size: 16px !important; }
-    }
-    /* ===== ШАПКА — одна строка, крупные размеры ===== */
-    .site-header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 14px 28px;
-        min-height: 88px;
-        flex-wrap: nowrap;
-    }
-
-    .logo-block {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-shrink: 0;
-    }
-    .logo-link {
-        display: block;
-        cursor: default;
-        pointer-events: none;
-    }
-    .logo-link img {
-        height: 64px;
-        width: 64px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 3px solid #c9a227;
-        padding: 2px;
-        background: #fff;
-        display: block;
-        transition: none !important;
-        transform: none !important;
-    }
-    .btn-home {
-        display: inline-flex;
-        align-items: center;
-        padding: 11px 18px;
-        background: linear-gradient(135deg, #c9a227 0%, #e0be4e 100%);
-        color: #0f1c33;
-        text-decoration: none;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-        transition: 0.3s;
-        white-space: nowrap;
-        box-shadow: 0 4px 12px rgba(201,162,39,0.25);
-    }
-    .btn-home:hover {
-        background: #1a2b4a;
-        color: #fff;
-    }
-
-    /* МЕНЮ */
-    .main-nav {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;
-        flex-shrink: 0;
-    }
-    .main-nav .nav-item {
-        font-size: 13px !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.3px !important;
-        padding: 8px 0 !important;
-        white-space: nowrap;
-    }
-    .menu-btn {
-        padding: 10px 18px !important;
-        font-size: 13px !important;
-        white-space: nowrap;
-        border-radius: 8px;
-        line-height: 1.2;
-        flex-shrink: 0;
-    }
-
-    /* ПРАВЫЙ УГОЛ */
-    .user-menu {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-        flex-shrink: 0;
-    }
-    .search-btn {
-        width: 46px !important;
-        height: 46px !important;
-        font-size: 19px !important;
-        flex-shrink: 0;
-        padding: 0 !important;
-        line-height: 1;
-    }
-    .btn-student {
-        padding: 11px 18px !important;
-        font-size: 13px !important;
-        white-space: nowrap;
-        flex-shrink: 0;
-        line-height: 1.2;
-    }
-    .btn-student .icon-user {
-        font-size: 15px !important;
-    }
-
-    @media (max-width: 1700px) {
-        .site-header-inner { gap: 14px; padding: 14px 20px; }
-        .main-nav { gap: 14px; }
-        .main-nav .nav-item { font-size: 12px !important; }
+        .logo-link img { height: 55px; width: 55px; }
         .btn-home { font-size: 12px; padding: 10px 14px; }
         .btn-student { font-size: 12px !important; padding: 10px 14px !important; }
-    }
-    @media (max-width: 1500px) {
-        .main-nav { gap: 11px; }
-        .main-nav .nav-item { font-size: 11px !important; }
-    }
-    @media (max-width: 1300px) {
-        .site-header-inner { flex-wrap: wrap; }
-        .main-nav { flex-wrap: wrap; }
     }
     </style>
 </head>
@@ -227,7 +80,6 @@
 <!-- ШАПКА -->
 <header class="site-header">
     <div class="site-header-inner">
-
         <div class="logo-block">
             <a href="{% url 'home' %}" class="btn-home">На главную</a>
             <div class="logo-link">
@@ -237,202 +89,32 @@
 
         {% if request.path == '/' %}
         <nav class="main-nav">
-
             <div class="nav-dropdown">
                 <a href="#" class="nav-item">Об университете</a>
                 <div class="dropdown-mega">
                     <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>УНИВЕРСИТЕТ</h4>
-                            <a href="#">Ректор ФГБОУ ВО "Дагестанский государственный технический университет"</a>
-                            <a href="#">Руководство</a>
-                            <a href="#">Сведения об образовательной организации</a>
-                            <a href="#">Управления и отделы</a>
-                            <a href="#">Ученый совет</a>
-                            <a href="#">Выборы ректора</a>
-                            <a href="#">Вестник ДГТУ</a>
-                            <a href="#">Профсоюзная организация</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ОРГАНИЗАЦИОННЫЕ ДОКУМЕНТЫ</h4>
-                            <a href="#">Устав</a>
-                            <a href="#">Программа развития университета</a>
-                            <a href="#">Документы по самообследованию</a>
-                            <a href="#">Финансово-экономические документы</a>
-                            <a href="#">Эффективный контракт</a>
-                            <a href="#">Аккредитация</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ПРЕСС-СЛУЖБА</h4>
-                            <a href="#">Наша газета</a>
-                            <a href="#">Новости</a>
-                        </div>
+                        <div class="dropdown-col"><h4>УНИВЕРСИТЕТ</h4><a href="#">Ректор</a><a href="#">Руководство</a><a href="#">Сведения</a></div>
+                        <div class="dropdown-col"><h4>ДОКУМЕНТЫ</h4><a href="#">Устав</a><a href="#">Программа развития</a></div>
                     </div>
                 </div>
             </div>
-
-            <div class="nav-dropdown">
-                <a href="#" class="nav-item">Филиалы</a>
-                <div class="dropdown-mega">
-                    <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>ФИЛИАЛ В Г. КАСПИЙСК</h4>
-                            <a href="#">Кафедра конструкторско-технологического обеспечения</a>
-                            <a href="#">Абитуриентам</a>
-                            <a href="#">Наши выпускники</a>
-                            <a href="#">Наши успехи</a>
-                            <a href="#">Фотоальбом</a>
-                            <a href="#">Деканат</a>
-                            <a href="#">Новости</a>
-                            <a href="#">Сведения о филиале</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ФИЛИАЛ В Г. ДЕРБЕНТ</h4>
-                            <a href="#">Кафедра естественнонаучных дисциплин</a>
-                            <a href="#">Технический колледж</a>
-                            <a href="#">Абитуриентам</a>
-                            <a href="#">Наши выпускники</a>
-                            <a href="#">Фотоальбом</a>
-                            <a href="#">Новости</a>
-                            <a href="#">Сведения о филиале</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ФИЛИАЛ В Г. КИЗЛЯР</h4>
-                            <a href="#">Кафедра естественнонаучных дисциплин</a>
-                            <a href="#">Бакалавриат</a>
-                            <a href="#">Специальности</a>
-                            <a href="#">Фотоальбом</a>
-                            <a href="#">Наши успехи</a>
-                            <a href="#">Новости</a>
-                            <a href="#">Сведения о филиале</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="nav-dropdown">
-                <a href="#" class="nav-item">Образование</a>
-                <div class="dropdown-mega">
-                    <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>СТУДЕНТАМ</h4>
-                            <a href="#">Реализуемые образовательные программы</a>
-                            <a href="#">Расписание занятий на 2026-2027 учебный год</a>
-                            <a href="#">Военный учебный центр</a>
-                            <a href="#">Электронная информационно-образовательная среда</a>
-                            <a href="#">Образование</a>
-                            <a href="#">Правила внутреннего распорядка обучающихся</a>
-                            <a href="#">Объединенный совет обучающихся</a>
-                            <a href="#">Студенческий спортивный клуб</a>
-                            <a href="#">Информация о стипендиях</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>АСПИРАНТАМ</h4>
-                            <a href="#">Обучение</a>
-                            <a href="#">Нормативные документы</a>
-                            <a href="#">Контакты</a>
-                            <a href="#">Задать вопрос</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ФАКУЛЬТЕТЫ</h4>
-                            <a href="#">Факультет компьютерных технологий и энергетики</a>
-                            <a href="#">Архитектурно-строительный факультет</a>
-                            <a href="#">Факультет радиоэлектроники и биотехнических систем</a>
-                            <a href="#">Технологический факультет</a>
-                            <a href="#">Факультет нефти, газа и природообустройства</a>
-                            <a href="#">Заочный факультет</a>
-                            <a href="#">Факультет информационных систем в экономике и управлении</a>
-                            <a href="#">Факультет среднего профессионального образования</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="nav-dropdown">
-                <a href="#" class="nav-item">Наука и инновации</a>
-                <div class="dropdown-mega">
-                    <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>НАУКА</h4>
-                            <a href="#">Библиотека</a>
-                            <a href="#">Основные научные направления</a>
-                            <a href="#">Результаты научных исследований</a>
-                            <a href="#">Научно-прикладные разработки для предприятий</a>
-                            <a href="#">Совет молодых ученых</a>
-                            <a href="#">Отдел аспирантуры и докторантуры</a>
-                            <a href="#">Отдел научных исследований</a>
-                            <a href="#">Диссертационные советы</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ЦЕНТРЫ И НИИ</h4>
-                            <a href="#">НИИ «Полупроводниковые термоэлектрические устройства»</a>
-                            <a href="#">НИИ "Микроэлектроники и нанотехнологий"</a>
-                            <a href="#">НИИ "Региональных экономических проблем"</a>
-                            <a href="#">Центр современных информационных технологий</a>
-                            <a href="#">НОЦ "Современные строительные материалы"</a>
-                            <a href="#">Региональный экспертно-аттестационный центр</a>
-                            <a href="#">Молодёжный инновационный комплекс (МИКРОН)</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>НАУЧНЫЕ ИЗДАНИЯ</h4>
-                            <a href="#">Вестник ДГТУ. Технические науки</a>
-                            <a href="#">Научные исследования: итоги и перспективы</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="nav-dropdown">
-                <a href="#" class="nav-item">Поступающим</a>
-                <div class="dropdown-mega">
-                    <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>ПОСТУПАЮЩИМ</h4>
-                            <a href="{% url 'postupayushim' %}">Прием 2026</a>
-                            <a href="#">Образовательные программы</a>
-                            <a href="#">Документы ДГТУ</a>
-                            <a href="#">Выбираем инновационный вуз</a>
-                            <a href="#">Военный учебный центр</a>
-                            <a href="#">Платные образовательные услуги</a>
-                            <a href="#">Стипендии и меры поддержки обучающихся</a>
-                            <a href="#">Архив приемных кампаний</a>
-                            <a href="#">Профориентационная работа</a>
-                            <a href="#">График субботних лекториев</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ФАКУЛЬТЕТЫ</h4>
-                            <a href="#">Факультет компьютерных технологий и энергетики</a>
-                            <a href="#">Архитектурно-строительный факультет</a>
-                            <a href="#">Факультет радиоэлектроники и биотехнических систем</a>
-                            <a href="#">Технологический факультет</a>
-                            <a href="#">Факультет нефти, газа и природообустройства</a>
-                            <a href="#">Заочный факультет</a>
-                            <a href="#">Факультет информационных систем</a>
-                            <a href="#">Факультет среднего профессионального образования</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <div class="nav-dropdown"><a href="#" class="nav-item">Филиалы</a></div>
+            <div class="nav-dropdown"><a href="#" class="nav-item">Образование</a></div>
+            <div class="nav-dropdown"><a href="#" class="nav-item">Наука и инновации</a></div>
+            <div class="nav-dropdown"><a href="#" class="nav-item">Поступающим</a></div>
             <a href="#contacts" class="nav-item">Контакты</a>
-
             <button type="button" class="menu-btn" id="openMenu">Меню ≡</button>
         </nav>
 
         <div class="user-menu">
-            <button type="button" class="search-btn" id="openSearch" title="Поиск">🔍</button>
+            <button type="button" class="search-btn" id="openSearch">🔍</button>
             {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="btn-student">
-                    <span class="icon-user">👤</span> Кабинет студента
-                </a>
+                <a href="{% url 'profile' %}" class="btn-student"><span class="icon-user">👤</span> Кабинет</a>
             {% else %}
-                <a href="{% url 'register' %}" class="btn-student">
-                    <span class="icon-user">👤</span> Кабинет студента
-                </a>
+                <a href="{% url 'register' %}" class="btn-student"><span class="icon-user">👤</span> Кабинет</a>
             {% endif %}
         </div>
         {% endif %}
-
     </div>
 </header>
 
@@ -451,9 +133,7 @@
 <div class="mega-menu" id="megaMenu">
     <div class="mega-menu-inner">
         <div class="mega-header">
-            <div class="mega-title">
-                <strong>ДАГЕСТАНСКИЙ ГОСУДАРСТВЕННЫЙ<br>ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ</strong>
-            </div>
+            <div class="mega-title"><strong>ДАГЕСТАНСКИЙ ГОСУДАРСТВЕННЫЙ<br>ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ</strong></div>
             <button type="button" class="mega-close" id="closeMenu">Меню ✕</button>
         </div>
         <div class="mega-content">
@@ -461,47 +141,19 @@
                 <div class="mega-item active">ОБ УНИВЕРСИТЕТЕ</div>
                 <div class="mega-item">ФИЛИАЛЫ</div>
                 <div class="mega-item">ОБРАЗОВАНИЕ</div>
-                <div class="mega-item">НАУКА И ИННОВАЦИИ</div>
-                <div class="mega-item">ПОСТУПАЮЩИМ</div>
-                <div class="mega-item">ПРОФЕССИОНАЛИТЕТ</div>
             </div>
             <div class="mega-col">
                 <h4>УНИВЕРСИТЕТ</h4>
                 <a href="#">Ректор ФГБОУ ВО "Дагестанский государственный технический университет"</a>
                 <a href="#">Руководство</a>
                 <a href="#">Сведения об образовательной организации</a>
-                <a href="#">Управления и отделы</a>
-                <a href="#">Ученый совет</a>
-                <a href="#">Выборы ректора</a>
-                <a href="#">Вестник ДГТУ</a>
-                <a href="#">Профсоюзная организация</a>
-            </div>
-            <div class="mega-col">
-                <h4>ОРГАНИЗАЦИОННЫЕ ДОКУМЕНТЫ</h4>
-                <a href="#">Устав</a>
-                <a href="#">Программа развития университета</a>
-                <a href="#">Документы по самообследованию</a>
-                <a href="#">Финансово-экономические документы</a>
-                <a href="#">Эффективный контракт</a>
-                <a href="#">Аккредитация</a>
-            </div>
-            <div class="mega-col">
-                <h4>ПРЕСС-СЛУЖБА</h4>
-                <a href="#">Наша газета</a>
-                <a href="#">Новости</a>
-                <a href="#">Фотогалерея</a>
-                <a href="#">Контакты для СМИ</a>
             </div>
         </div>
     </div>
 </div>
 
 {% if messages %}
-<div class="container" style="padding-bottom:0;">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-</div>
+<div class="container" style="padding-bottom:0;">{% for message in messages %}<div class="alert alert-{{ message.tags }}">{{ message }}</div>{% endfor %}</div>
 {% endif %}
 
 {% block content %}{% endblock %}
@@ -521,77 +173,41 @@
         </div>
         <div class="footer-col">
             <h3>РАЗДЕЛЫ</h3>
-            <a href="#">Факультеты</a>
-            <a href="#">Филиалы</a>
-            <a href="#">Наука</a>
-            <a href="#">Студентам</a>
-            <a href="#">Абитуриентам</a>
-            <a href="#">Центры и НИИ</a>
+            <a href="#">Факультеты</a><a href="#">Филиалы</a><a href="#">Наука</a><a href="#">Студентам</a><a href="#">Абитуриентам</a>
         </div>
         <div class="footer-col">
             <h3>СЕРВИС</h3>
-            <a href="#">Портфолио</a>
-            <a href="#">Обращение к ректору</a>
-            <a href="#">Карта сайта</a>
-            <a href="#">Контакты</a>
-            <a href="#">Наши сервисы</a>
-            <a href="#">Вход в почту ДГТУ</a>
-            <a href="#">Часто задаваемые вопросы</a>
+            <a href="#">Портфолио</a><a href="#">Обращение к ректору</a><a href="#">Карта сайта</a><a href="#">Контакты</a>
         </div>
         <div class="footer-col">
             <h3>ИНФОРМАЦИЯ</h3>
-            <a href="#">Фотогалерея</a>
-            <a href="#">Об университете</a>
-            <a href="#">Список ППС, у которых истекает срок трудового договора</a>
-            <a href="#">Конкурсный отбор ППС</a>
-            <a href="#">Экстремизм, пропаганда терроризма в интернете? СООБЩИТЕ!</a>
-            <a href="#">Горячая линия правовой и психологической помощи</a>
+            <a href="#">Фотогалерея</a><a href="#">Об университете</a><a href="#">Список ППС</a><a href="#">Конкурсный отбор ППС</a>
         </div>
     </div>
-
     <div class="footer-cards">
         <a href="{% url 'rustore' %}" class="footer-card">💳 RuStore</a>
         <div class="footer-socials">
-            <a href="#" class="soc">OK</a>
-            <a href="#" class="soc">VK</a>
-            <a href="#" class="soc">YT</a>
-            <a href="#" class="soc">TG</a>
+            <a href="#" class="soc">OK</a><a href="#" class="soc">VK</a><a href="#" class="soc">YT</a><a href="#" class="soc">TG</a>
         </div>
     </div>
-
-    <div class="footer-bottom">
-        © 2026 ДГТУ. Все права защищены.
-    </div>
+    <div class="footer-bottom">© 2026 ДГТУ. Все права защищены.</div>
 </footer>
 
 <script>
-    var openMenu = document.getElementById('openMenu');
-    var closeMenu = document.getElementById('closeMenu');
-    var openSearch = document.getElementById('openSearch');
-    var closeSearch = document.getElementById('closeSearch');
-
-    if (openMenu) {
-        openMenu.addEventListener('click', function() {
-            document.getElementById('megaMenu').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        });
-    }
-    if (closeMenu) {
-        closeMenu.addEventListener('click', function() {
-            document.getElementById('megaMenu').classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    }
-    if (openSearch) {
-        openSearch.addEventListener('click', function() {
-            document.getElementById('searchBar').classList.add('open');
-        });
-    }
-    if (closeSearch) {
-        closeSearch.addEventListener('click', function() {
-            document.getElementById('searchBar').classList.remove('open');
-        });
-    }
+    document.getElementById('openMenu')?.addEventListener('click', function() {
+        document.getElementById('megaMenu').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('closeMenu')?.addEventListener('click', function() {
+        document.getElementById('megaMenu').classList.remove('open');
+        document.body.style.overflow = '';
+    });
+    document.getElementById('openSearch')?.addEventListener('click', function() {
+        document.getElementById('searchBar').classList.add('open');
+    });
+    document.getElementById('closeSearch')?.addEventListener('click', function() {
+        document.getElementById('searchBar').classList.remove('open');
+    });
     document.querySelectorAll('a[href="#contacts"]').forEach(function(link) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -599,6 +215,5 @@
         });
     });
 </script>
-
 </body>
 </html>
