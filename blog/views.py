@@ -186,3 +186,10 @@ def college_joke(request):
     return render(request, 'blog/college_joke.html')
 def clown_joke(request):
     return render(request, 'blog/clown_joke.html')
+# ... (твой предыдущий код) ...
+
+def branches(request):
+    return render(request, 'blog/branches.html')
+
+def education(request):
+    return render(request, 'blog/education.html')

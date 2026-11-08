@@ -27,4 +27,8 @@ urlpatterns = [
     
     # НОВЫЙ МАРШРУТ
     path('clown-joke/', views.clown_joke, name='clown_joke'),
+
+    # ... (твои старые пути) ...
+path('branches/', views.branches, name='branches'),
+path('education/', views.education, name='education'),
 ]
