@@ -51,28 +51,16 @@
     .nav-dropdown { position: relative; display: inline-block; }
     
     .dropdown-mega {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-10px);
-        background: #fff;
-        border-top: 4px solid var(--gold);
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 15px 40px rgba(26,43,74,0.2);
-        min-width: 820px;
-        max-width: 1100px;
-        padding: 28px 32px;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
+        position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(-10px);
+        background: #fff; border-top: 4px solid var(--gold); border-radius: 0 0 12px 12px;
+        box-shadow: 0 15px 40px rgba(26,43,74,0.2); min-width: 820px; max-width: 1100px;
+        padding: 28px 32px; opacity: 0; visibility: hidden; pointer-events: none;
         transition: opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s, visibility 0s linear 0.6s;
         z-index: 1000;
     }
 
     .nav-dropdown:hover .dropdown-mega {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
+        opacity: 1; visibility: visible; pointer-events: auto;
         transform: translateX(-50%) translateY(0);
         transition: opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s, visibility 0s linear 0.3s;
     }
@@ -88,19 +76,26 @@
 
     /* ===== МОБИЛЬНАЯ ШАПКА ===== */
     @media (max-width: 992px) {
-        .site-header-inner { display: flex; flex-wrap: wrap; justify-content: space-between; padding: 10px 15px; gap: 10px; min-height: auto; }
-        .header-left { gap: 8px; flex: 1; }
-        .btn-home { order: 1; font-size: 10px; padding: 6px 10px; margin-right: 2px; }
-        .search-btn { order: 2; width: 34px !important; height: 34px !important; font-size: 14px !important; margin: 0; }
-        .logo-link { order: 3; margin-left: auto; }
-        .logo-link img { height: 44px; width: 44px; }
-        .header-right { flex: 0; gap: 0; }
-        .btn-student { font-size: 11px !important; padding: 8px 12px !important; }
+        .site-header-inner { 
+            display: flex; flex-direction: column; padding: 10px; gap: 15px; 
+            align-items: stretch; /* Растягиваем на всю ширину */
+        }
         
-        /* На телефоне прячем верхнее меню, работает только кнопка Меню */
-        .main-nav { order: 4; width: 100%; justify-content: center; margin-top: 5px; }
-        .nav-dropdown { display: none; }
-        .menu-btn { display: block !important; width: 200px; margin: 0 auto; font-size: 12px !important; padding: 8px 16px !important; }
+        /* Верхний ряд: На главную, Поиск, Логотип */
+        .header-left { width: 100%; justify-content: space-between; }
+        .logo-link { margin: 0 auto; } /* Логотип по центру */
+        .logo-link img { height: 45px; width: 45px; }
+        .btn-home { font-size: 11px; padding: 8px 12px; }
+        .search-btn { width: 36px !important; height: 36px !important; font-size: 16px !important; }
+
+        /* Второй ряд: Кнопка Кабинет */
+        .header-right { width: 100%; justify-content: center; }
+        .btn-student { width: 100%; justify-content: center; font-size: 13px !important; padding: 10px !important; }
+
+        /* Третий ряд: Меню */
+        .main-nav { width: 100%; justify-content: center; margin-top: 5px; }
+        .main-nav > * { display: none; } /* Прячем все ссылки */
+        .main-nav > .menu-btn { display: block !important; width: 100%; margin: 0; padding: 12px !important; font-size: 14px !important; }
     }
     </style>
 </head>
@@ -125,102 +120,52 @@
 
         {% if request.path == '/' %}
         <nav class="main-nav">
-            
-            <!-- Об университете (ТОЛЬКО НАВЕДЕНИЕ, БЕЗ КЛИКА) -->
             <div class="nav-dropdown">
                 <a href="#" class="nav-item" onclick="return false;">Об университете</a>
                 <div class="dropdown-mega">
                     <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>УНИВЕРСИТЕТ</h4>
-                            <a href="#">Ректор ФГБОУ ВО "Дагестанский государственный технический университет"</a>
-                            <a href="#">Руководство</a>
-                            <a href="#">Сведения об образовательной организации</a>
-                            <a href="#">Управления и отделы</a>
-                            <a href="#">Ученый совет</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ОРГАНИЗАЦИОННЫЕ ДОКУМЕНТЫ</h4>
-                            <a href="#">Устав</a>
-                            <a href="#">Программа развития университета</a>
-                            <a href="#">Документы по самообследованию</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ПРЕСС-СЛУЖБА</h4>
-                            <a href="#">Наша газета</a>
-                            <a href="#">Новости</a>
-                        </div>
+                        <div class="dropdown-col"><h4>УНИВЕРСИТЕТ</h4><a href="#">Ректор</a><a href="#">Руководство</a><a href="#">Сведения</a></div>
+                        <div class="dropdown-col"><h4>ДОКУМЕНТЫ</h4><a href="#">Устав</a><a href="#">Программа</a></div>
+                        <div class="dropdown-col"><h4>ПРЕСС-СЛУЖБА</h4><a href="#">Газета</a><a href="#">Новости</a></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Филиалы (ТОЛЬКО НАВЕДЕНИЕ) -->
             <div class="nav-dropdown">
                 <a href="#" class="nav-item" onclick="return false;">Филиалы</a>
                 <div class="dropdown-mega">
                     <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>ФИЛИАЛ В Г. КАСПИЙСК</h4>
-                            <a href="#">Абитуриентам</a><a href="#">Наши выпускники</a><a href="#">Новости</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ФИЛИАЛ В Г. ДЕРБЕНТ</h4>
-                            <a href="#">Технический колледж</a><a href="#">Абитуриентам</a><a href="#">Новости</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ФИЛИАЛ В Г. КИЗЛЯР</h4>
-                            <a href="#">Бакалавриат</a><a href="#">Специальности</a><a href="#">Новости</a>
-                        </div>
+                        <div class="dropdown-col"><h4>КАСПИЙСК</h4><a href="#">Абитуриентам</a><a href="#">Новости</a></div>
+                        <div class="dropdown-col"><h4>ДЕРБЕНТ</h4><a href="#">Колледж</a><a href="#">Новости</a></div>
+                        <div class="dropdown-col"><h4>КИЗЛЯР</h4><a href="#">Бакалавриат</a><a href="#">Новости</a></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Образование (ТОЛЬКО НАВЕДЕНИЕ) -->
             <div class="nav-dropdown">
                 <a href="#" class="nav-item" onclick="return false;">Образование</a>
                 <div class="dropdown-mega">
                     <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>СТУДЕНТАМ</h4>
-                            <a href="#">Реализуемые образовательные программы</a>
-                            <a href="#">Расписание занятий</a>
-                            <a href="#">Военный учебный центр</a>
-                        </div>
-                        <div class="dropdown-col">
-                            <h4>ФАКУЛЬТЕТЫ</h4>
-                            <a href="#">Факультет компьютерных технологий</a>
-                            <a href="#">Архитектурно-строительный факультет</a>
-                        </div>
+                        <div class="dropdown-col"><h4>СТУДЕНТАМ</h4><a href="#">Программы</a><a href="#">Расписание</a></div>
+                        <div class="dropdown-col"><h4>ФАКУЛЬТЕТЫ</h4><a href="#">ФКТиЭ</a><a href="#">АСФ</a></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Наука (ТОЛЬКО НАВЕДЕНИЕ) -->
             <div class="nav-dropdown">
                 <a href="#" class="nav-item" onclick="return false;">Наука и инновации</a>
                 <div class="dropdown-mega">
                     <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>НАУКА</h4>
-                            <a href="#">Библиотека</a>
-                            <a href="#">Основные научные направления</a>
-                            <a href="#">Совет молодых ученых</a>
-                        </div>
+                        <div class="dropdown-col"><h4>НАУКА</h4><a href="#">Библиотека</a><a href="#">Направления</a></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Поступающим (ТОЛЬКО НАВЕДЕНИЕ) -->
             <div class="nav-dropdown">
                 <a href="#" class="nav-item" onclick="return false;">Поступающим</a>
                 <div class="dropdown-mega">
                     <div class="dropdown-grid">
-                        <div class="dropdown-col">
-                            <h4>ПОСТУПАЮЩИМ</h4>
-                            <a href="#">Прием 2026</a>
-                            <a href="#">Образовательные программы</a>
-                            <a href="#">Документы ДГТУ</a>
-                        </div>
+                        <div class="dropdown-col"><h4>ПОСТУПАЮЩИМ</h4><a href="#">Прием 2026</a><a href="#">Документы</a></div>
                     </div>
                 </div>
             </div>
@@ -252,7 +197,6 @@
     </div>
 </div>
 
-<!-- ПОЛНОЭКРАННОЕ МЕНЮ (ЗДЕСЬ ССЫЛКИ РАБОТАЮТ) -->
 <div class="mega-menu" id="megaMenu">
     <div class="mega-menu-inner">
         <div class="mega-header">
@@ -262,9 +206,8 @@
         <div class="mega-content">
             <div class="mega-left">
                 <div class="mega-item active">ОБ УНИВЕРСИТЕТЕ</div>
-                <!-- Вот тут ссылки рабочие -->
-                <a href="{% url 'abiturient' %}" class="mega-item" style="text-decoration:none; display:block;">ФИЛИАЛЫ</a>
-                <a href="{% url 'education' %}" class="mega-item" style="text-decoration:none; display:block;">ОБРАЗОВАНИЕ</a>
+                <a href="{% url 'abiturient' %}" class="mega-item" style="text-decoration:none; display:block; color: rgba(255,255,255,0.9); padding:14px 20px; font-size:14px; font-weight:700;">ФИЛИАЛЫ</a>
+                <a href="{% url 'education' %}" class="mega-item" style="text-decoration:none; display:block; color: rgba(255,255,255,0.9); padding:14px 20px; font-size:14px; font-weight:700;">ОБРАЗОВАНИЕ</a>
             </div>
             <div class="mega-col">
                 <h4>УНИВЕРСИТЕТ</h4>
@@ -294,7 +237,13 @@
             <a href="#">Факультеты</a><a href="{% url 'abiturient' %}">Филиалы</a><a href="#">Наука</a>
         </div>
     </div>
-    <div class="footer-bottom">© 2026 ДГТУ. Все права защищены.</div>
+    <div class="footer-bottom">
+        © 2026 ДГТУ. Все права защищены.<br><br>
+        <!-- ССЫЛКА НА GITHUB -->
+        <a href="https://github.com/aua11279-tech/dgtu-blog" target="_blank" style="color: var(--gold); text-decoration: none; font-weight: bold; font-size: 14px;">
+            💻 Исходный код проекта на GitHub
+        </a>
+    </div>
 </footer>
 
 <script>
