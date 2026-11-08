@@ -30,10 +30,12 @@
     }
     .btn-home:hover { background: #1a2b4a; color: #fff; }
 
-    .main-nav { display: flex; gap: 18px; align-items: center; flex: 1; justify-content: center; flex-wrap: wrap; }
+    /* МЕНЮ С АНИМАЦИЕЙ */
+    .main-nav { display: flex; gap: 20px; align-items: center; flex: 1; justify-content: center; flex-wrap: wrap; }
     .main-nav .nav-item { 
         font-size: 13px !important; font-weight: 700 !important; white-space: nowrap; 
         position: relative; text-decoration: none; color: var(--navy); padding-bottom: 4px;
+        cursor: pointer;
     }
     
     /* ВОЗВРАЩАЕМ АНИМАЦИЮ ПОДЧЕРКИВАНИЯ */
@@ -50,19 +52,14 @@
 
     /* ===== МОБИЛЬНАЯ ШАПКА ===== */
     @media (max-width: 992px) {
-        .site-header-inner {
-            display: flex; flex-wrap: wrap; justify-content: space-between;
-            padding: 10px 15px; gap: 10px; min-height: auto;
-        }
+        .site-header-inner { display: flex; flex-wrap: wrap; justify-content: space-between; padding: 10px 15px; gap: 10px; min-height: auto; }
         .header-left { gap: 8px; flex: 1; }
         .btn-home { order: 1; font-size: 10px; padding: 6px 10px; margin-right: 2px; }
         .search-btn { order: 2; width: 34px !important; height: 34px !important; font-size: 14px !important; margin: 0; }
         .logo-link { order: 3; margin-left: auto; }
         .logo-link img { height: 44px; width: 44px; }
-
         .header-right { flex: 0; gap: 0; }
         .btn-student { font-size: 11px !important; padding: 8px 12px !important; }
-
         .main-nav { order: 4; width: 100%; justify-content: center; margin-top: 5px; }
         .main-nav .nav-item, .main-nav .nav-dropdown { display: none; }
         .menu-btn { display: block !important; width: 200px; margin: 0 auto; font-size: 12px !important; padding: 8px 16px !important; }
@@ -90,16 +87,23 @@
 
         {% if request.path == '/' %}
         <nav class="main-nav">
-            <div class="nav-dropdown">
-                <a href="#" class="nav-item">Об университете</a>
-            </div>
-            <!-- ВЕДЕТ НА СТРАНИЦУ ФИЛИАЛОВ -->
-            <div class="nav-dropdown"><a href="{% url 'branches' %}" class="nav-item">Филиалы</a></div>
-            <!-- ВЕДЕТ НА СТРАНИЦУ ОБРАЗОВАНИЯ -->
-            <div class="nav-dropdown"><a href="{% url 'education' %}" class="nav-item">Образование</a></div>
-            <div class="nav-dropdown"><a href="#" class="nav-item">Наука и инновации</a></div>
-            <div class="nav-dropdown"><a href="{% url 'postupayushim' %}" class="nav-item">Поступающим</a></div>
+            <!-- Об университете: анимация есть, но ссылка пустая -->
+            <a href="#" class="nav-item">Об университете</a>
+            
+            <!-- Филиалы: ведет на абитуриентов -->
+            <a href="{% url 'abiturient' %}" class="nav-item">Филиалы</a>
+            
+            <!-- Образование: ведет на новую страницу -->
+            <a href="{% url 'education' %}" class="nav-item">Образование</a>
+            
+            <!-- Наука: анимация есть, ссылка пустая -->
+            <a href="#" class="nav-item">Наука и инновации</a>
+            
+            <!-- Поступающим: ведет на свою страницу -->
+            <a href="{% url 'postupayushim' %}" class="nav-item">Поступающим</a>
+            
             <a href="#contacts" class="nav-item">Контакты</a>
+            
             <button type="button" class="menu-btn" id="openMenu">Меню ≡</button>
         </nav>
         {% endif %}
@@ -161,7 +165,7 @@
         </div>
         <div class="footer-col">
             <h3>РАЗДЕЛЫ</h3>
-            <a href="#">Факультеты</a><a href="{% url 'branches' %}">Филиалы</a><a href="#">Наука</a>
+            <a href="#">Факультеты</a><a href="{% url 'abiturient' %}">Филиалы</a><a href="#">Наука</a>
         </div>
     </div>
     <div class="footer-bottom">© 2026 ДГТУ. Все права защищены.</div>

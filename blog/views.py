@@ -193,3 +193,5 @@ def branches(request):
 
 def education(request):
     return render(request, 'blog/education.html')
+def education(request):
+    return render(request, 'blog/education.html')
