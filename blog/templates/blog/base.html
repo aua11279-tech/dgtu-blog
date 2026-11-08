@@ -30,21 +30,57 @@
     }
     .btn-home:hover { background: #1a2b4a; color: #fff; }
 
-    /* МЕНЮ С АНИМАЦИЕЙ */
+    /* ===== МЕНЮ (ДЕСКТОП) ===== */
     .main-nav { display: flex; gap: 20px; align-items: center; flex: 1; justify-content: center; flex-wrap: wrap; }
-    .main-nav .nav-item { 
+    
+    .nav-item { 
         font-size: 13px !important; font-weight: 700 !important; white-space: nowrap; 
         position: relative; text-decoration: none; color: var(--navy); padding-bottom: 4px;
         cursor: pointer;
     }
     
-    /* ВОЗВРАЩАЕМ АНИМАЦИЮ ПОДЧЕРКИВАНИЯ */
-    .main-nav .nav-item::after {
+    /* Анимация подчеркивания */
+    .nav-item::after {
         content: ''; position: absolute; left: 0; bottom: 0; 
         width: 0; height: 3px; background: var(--gold); transition: width 0.3s ease;
     }
-    .main-nav .nav-item:hover::after { width: 100%; }
-    .main-nav .nav-item:hover { color: var(--gold); }
+    .nav-item:hover::after { width: 100%; }
+    .nav-item:hover { color: var(--gold); }
+
+    /* Выпадающее мега-меню при наведении */
+    .nav-dropdown { position: relative; display: inline-block; }
+    
+    .dropdown-mega {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+        background: #fff;
+        border-top: 4px solid var(--gold);
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 15px 40px rgba(26,43,74,0.2);
+        min-width: 820px;
+        max-width: 1100px;
+        padding: 28px 32px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s, visibility 0s linear 0.6s;
+        z-index: 1000;
+    }
+
+    .nav-dropdown:hover .dropdown-mega {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+        transition: opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s, visibility 0s linear 0.3s;
+    }
+
+    .dropdown-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+    .dropdown-col h4 { color: var(--navy); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; margin: 0 0 16px; padding-bottom: 10px; border-bottom: 2px solid var(--gold); }
+    .dropdown-col a { display: block; color: var(--text); text-decoration: none; font-size: 14px; line-height: 1.5; padding: 7px 0; transition: all 0.2s; border-left: 2px solid transparent; }
+    .dropdown-col a:hover { color: var(--gold); padding-left: 8px; border-left-color: var(--gold); }
 
     .menu-btn { padding: 10px 18px !important; font-size: 13px !important; white-space: nowrap; border-radius: 8px; }
     .search-btn { width: 44px !important; height: 44px !important; font-size: 18px !important; padding: 0 !important; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--navy); background: transparent; cursor: pointer; }
@@ -60,8 +96,10 @@
         .logo-link img { height: 44px; width: 44px; }
         .header-right { flex: 0; gap: 0; }
         .btn-student { font-size: 11px !important; padding: 8px 12px !important; }
+        
+        /* На телефоне прячем верхнее меню, работает только кнопка Меню */
         .main-nav { order: 4; width: 100%; justify-content: center; margin-top: 5px; }
-        .main-nav .nav-item, .main-nav .nav-dropdown { display: none; }
+        .nav-dropdown { display: none; }
         .menu-btn { display: block !important; width: 200px; margin: 0 auto; font-size: 12px !important; padding: 8px 16px !important; }
     }
     </style>
@@ -87,21 +125,106 @@
 
         {% if request.path == '/' %}
         <nav class="main-nav">
-            <!-- Об университете: анимация есть, но ссылка пустая -->
-            <a href="#" class="nav-item">Об университете</a>
             
-            <!-- Филиалы: ведет на абитуриентов -->
-            <a href="{% url 'abiturient' %}" class="nav-item">Филиалы</a>
-            
-            <!-- Образование: ведет на новую страницу -->
-            <a href="{% url 'education' %}" class="nav-item">Образование</a>
-            
-            <!-- Наука: анимация есть, ссылка пустая -->
-            <a href="#" class="nav-item">Наука и инновации</a>
-            
-            <!-- Поступающим: ведет на свою страницу -->
-            <a href="{% url 'postupayushim' %}" class="nav-item">Поступающим</a>
-            
+            <!-- Об университете (ТОЛЬКО НАВЕДЕНИЕ, БЕЗ КЛИКА) -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-item" onclick="return false;">Об университете</a>
+                <div class="dropdown-mega">
+                    <div class="dropdown-grid">
+                        <div class="dropdown-col">
+                            <h4>УНИВЕРСИТЕТ</h4>
+                            <a href="#">Ректор ФГБОУ ВО "Дагестанский государственный технический университет"</a>
+                            <a href="#">Руководство</a>
+                            <a href="#">Сведения об образовательной организации</a>
+                            <a href="#">Управления и отделы</a>
+                            <a href="#">Ученый совет</a>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>ОРГАНИЗАЦИОННЫЕ ДОКУМЕНТЫ</h4>
+                            <a href="#">Устав</a>
+                            <a href="#">Программа развития университета</a>
+                            <a href="#">Документы по самообследованию</a>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>ПРЕСС-СЛУЖБА</h4>
+                            <a href="#">Наша газета</a>
+                            <a href="#">Новости</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Филиалы (ТОЛЬКО НАВЕДЕНИЕ) -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-item" onclick="return false;">Филиалы</a>
+                <div class="dropdown-mega">
+                    <div class="dropdown-grid">
+                        <div class="dropdown-col">
+                            <h4>ФИЛИАЛ В Г. КАСПИЙСК</h4>
+                            <a href="#">Абитуриентам</a><a href="#">Наши выпускники</a><a href="#">Новости</a>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>ФИЛИАЛ В Г. ДЕРБЕНТ</h4>
+                            <a href="#">Технический колледж</a><a href="#">Абитуриентам</a><a href="#">Новости</a>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>ФИЛИАЛ В Г. КИЗЛЯР</h4>
+                            <a href="#">Бакалавриат</a><a href="#">Специальности</a><a href="#">Новости</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Образование (ТОЛЬКО НАВЕДЕНИЕ) -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-item" onclick="return false;">Образование</a>
+                <div class="dropdown-mega">
+                    <div class="dropdown-grid">
+                        <div class="dropdown-col">
+                            <h4>СТУДЕНТАМ</h4>
+                            <a href="#">Реализуемые образовательные программы</a>
+                            <a href="#">Расписание занятий</a>
+                            <a href="#">Военный учебный центр</a>
+                        </div>
+                        <div class="dropdown-col">
+                            <h4>ФАКУЛЬТЕТЫ</h4>
+                            <a href="#">Факультет компьютерных технологий</a>
+                            <a href="#">Архитектурно-строительный факультет</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Наука (ТОЛЬКО НАВЕДЕНИЕ) -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-item" onclick="return false;">Наука и инновации</a>
+                <div class="dropdown-mega">
+                    <div class="dropdown-grid">
+                        <div class="dropdown-col">
+                            <h4>НАУКА</h4>
+                            <a href="#">Библиотека</a>
+                            <a href="#">Основные научные направления</a>
+                            <a href="#">Совет молодых ученых</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Поступающим (ТОЛЬКО НАВЕДЕНИЕ) -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-item" onclick="return false;">Поступающим</a>
+                <div class="dropdown-mega">
+                    <div class="dropdown-grid">
+                        <div class="dropdown-col">
+                            <h4>ПОСТУПАЮЩИМ</h4>
+                            <a href="#">Прием 2026</a>
+                            <a href="#">Образовательные программы</a>
+                            <a href="#">Документы ДГТУ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <a href="#contacts" class="nav-item">Контакты</a>
             
             <button type="button" class="menu-btn" id="openMenu">Меню ≡</button>
@@ -129,6 +252,7 @@
     </div>
 </div>
 
+<!-- ПОЛНОЭКРАННОЕ МЕНЮ (ЗДЕСЬ ССЫЛКИ РАБОТАЮТ) -->
 <div class="mega-menu" id="megaMenu">
     <div class="mega-menu-inner">
         <div class="mega-header">
@@ -138,7 +262,9 @@
         <div class="mega-content">
             <div class="mega-left">
                 <div class="mega-item active">ОБ УНИВЕРСИТЕТЕ</div>
-                <div class="mega-item">ФИЛИАЛЫ</div>
+                <!-- Вот тут ссылки рабочие -->
+                <a href="{% url 'abiturient' %}" class="mega-item" style="text-decoration:none; display:block;">ФИЛИАЛЫ</a>
+                <a href="{% url 'education' %}" class="mega-item" style="text-decoration:none; display:block;">ОБРАЗОВАНИЕ</a>
             </div>
             <div class="mega-col">
                 <h4>УНИВЕРСИТЕТ</h4>
