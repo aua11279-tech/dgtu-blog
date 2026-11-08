@@ -42,7 +42,11 @@ class Article(models.Model):
         return self.title
 
 class Profile(models.Model):
+    # Связь 1 к 1 с базовым пользователем. 
+    # Здесь НЕТ полей username или email, так как они уже есть в User.
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    
+    # Только дополнительная информация
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, verbose_name='Аватар')
     bio = models.TextField(max_length=500, blank=True, verbose_name='О себе')
     birth_date = models.DateField(null=True, blank=True, verbose_name='Дата рождения')
@@ -59,12 +63,8 @@ class Profile(models.Model):
     def __str__(self):
         return f'Профиль {self.user.username}'
 
+# Сигнал, который создает профиль ТОЛЬКО ОДИН РАЗ при регистрации нового User.
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
-    if hasattr(instance, 'profile'):
-        instance.profile.save()
