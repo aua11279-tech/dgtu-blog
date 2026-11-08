@@ -72,26 +72,28 @@
 
 /* === МОБИЛЬНАЯ ВЕРСИЯ (до 992px) === */
 @media (max-width: 992px) {
-    /* Исправляем вылезание текста */
-    .hero-slider { min-height: auto; padding-bottom: 40px; } 
-    .hero-slide { position: relative; padding: 30px 15px 50px; }
+    /* ЖЕСТКО ФИКСИРУЕМ ВЫСОТУ ДЛЯ СЛАЙДЕРА, ЧТОБЫ ОН НЕ БЫЛ ПУСТЫМ */
+    .hero-slider { min-height: 600px; } 
+    .hero-slide { padding: 20px 10px; }
+    
     .hero-slide-inner { 
         display: flex; flex-direction: column; text-align: center; gap: 20px; 
-        padding: 0 10px; /* Убираем жесткие отступы */
-        width: 100%; box-sizing: border-box;
+        padding: 0 15px; width: 100%; box-sizing: border-box;
     }
     .hero-slide-text { order: 1; width: 100%; }
-    .hero-slide-text h1 { font-size: 26px; margin-bottom: 15px; word-wrap: break-word; }
-    .hero-slide-text p { font-size: 14px; word-wrap: break-word; padding: 0 5px; }
+    .hero-slide-text h1 { font-size: 26px; margin-bottom: 15px; word-wrap: break-word; line-height: 1.3; }
+    .hero-slide-text p { font-size: 15px; word-wrap: break-word; padding: 0 5px; margin-bottom: 10px; }
     
-    .hero-slide-image { order: 2; margin: 15px auto; width: 100%; }
-    .logo-square { max-height: 220px; object-fit: contain; }
+    .hero-slide-image { order: 2; margin: 10px auto; width: 100%; }
+    .logo-square { max-height: 200px; object-fit: contain; }
     
     .btn-hero { order: 3; align-self: center; margin-top: 10px; }
     
-    .slider-arrow { top: 55%; width: 35px; height: 35px; font-size: 18px; }
+    /* Стрелки точно по центру картинки */
+    .slider-arrow { top: 58%; width: 35px; height: 35px; font-size: 18px; background: rgba(255,255,255,0.9); }
     .slider-arrow.prev { left: 5px; } .slider-arrow.next { right: 5px; }
 
+    /* Остальные блоки */
     .college-promo-inner { grid-template-columns: 1fr; text-align: center; gap: 30px; }
     .college-promo-text h2 { font-size: 28px; }
     
@@ -167,17 +169,17 @@
     </div>
 </section>
 
-<!-- ЖИЗНЬ -->
+<!-- ЖИЗНЬ (ВОЗВРАЩЕН ТЕКСТ) -->
 <section class="life-section">
     <div class="life-container">
         <div class="life-header"><h2>ДГТУ – научная и студенческая жизнь</h2><p>Часть научной и инновационной структуры Республики Дагестан и СКФО.</p></div>
         <div class="life-grid">
-            <div class="life-card"><img src="{% static 'images/life1.png' %}" alt="..."><div class="life-card-content"><h3>Качественное образование</h3><p>Студентов обучают квалифицированные педагоги-практики.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life1.png' %}" alt="..."><div class="life-card-content"><h3>Качественное образование</h3><p>Студентов обучают квалифицированные педагоги-практики, среди которых преподаватели ведущих вузов страны.</p></div></div>
             <div class="life-card"><img src="{% static 'images/life2.png' %}" alt="..."><div class="life-card-content"><h3>Наука и техническое творчество</h3><p>Более 50 направлений научной и изобретательской работы.</p></div></div>
-            <div class="life-card"><img src="{% static 'images/life3.png' %}" alt="..."><div class="life-card-content"><h3>Высокие стипендии</h3><p>Академическая: 2750₽ - 11875₽. Социальная: 4125₽ - 11562₽.</p></div></div>
-            <div class="life-card"><img src="{% static 'images/life4.png' %}" alt="..."><div class="life-card-content"><h3>Интересная студенческая жизнь</h3><p>Студенческие клубы по интересам, КВН и многое другое.</p></div></div>
-            <div class="life-card"><img src="{% static 'images/life5.png' %}" alt="..."><div class="life-card-content"><h3>Профессиональные спортплощадки</h3><p>Плавательный бассейн, скалодром, футбольные поля.</p></div></div>
-            <div class="life-card"><img src="{% static 'images/life6.png' %}" alt="..."><div class="life-card-content"><h3>Комфортные общежития</h3><p>Студенческий кампус ДГТУ, санаторий-профилакторий.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life3.png' %}" alt="..."><div class="life-card-content"><h3>Высокие стипендии</h3><p>Академическая: 2750₽ - 11875₽. Социальная: 4125₽ - 11562₽. Именные: до 10000₽.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life4.png' %}" alt="..."><div class="life-card-content"><h3>Интересная студенческая жизнь</h3><p>Студенческие клубы по интересам, хореографические ансамбли, спортивные секции, КВН и многое другое.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life5.png' %}" alt="..."><div class="life-card-content"><h3>Профессиональные спортплощадки</h3><p>Плавательный бассейн, пятиэтажный скалодром, футбольные поля, площадки баскетбола, стритбола и воркаута.</p></div></div>
+            <div class="life-card"><img src="{% static 'images/life6.png' %}" alt="..."><div class="life-card-content"><h3>Комфортные общежития</h3><p>Студенческий кампус ДГТУ, признанный лучшим в республике, санаторий-профилакторий для отдыха студентов.</p></div></div>
         </div>
     </div>
 </section>
@@ -187,10 +189,10 @@
     <div class="events-container">
         <div class="events-header"><h2>Мероприятия</h2></div>
         <div class="events-grid">
-            <div class="event-card"><img src="{% static 'images/event1.jpeg' %}" alt="..."><div class="event-card-content"><div class="event-date">28 сентября 2026 г.</div><h3 class="event-title">ТехноСпортФест 2026</h3><span class="event-tag">Мероприятия</span></div></div>
-            <div class="event-card"><img src="{% static 'images/event2.jpeg' %}" alt="..."><div class="event-card-content"><div class="event-date">28 сентября 2026 г.</div><h3 class="event-title">Доступ к платформе психологической поддержки</h3><span class="event-tag">Мероприятия</span></div></div>
-            <div class="event-card"><img src="{% static 'images/event3.png' %}" alt="..."><div class="event-card-content"><div class="event-date">25 ноября 2025 г.</div><h3 class="event-title">Экспериментальная физика для школьников</h3><span class="event-tag">В центре внимания</span></div></div>
-            <div class="event-card"><img src="{% static 'images/event4.png' %}" alt="..."><div class="event-card-content"><div class="event-date">20 ноября 2025 г.</div><h3 class="event-title">В ДГТУ стартовал фестиваль этнической культуры</h3><span class="event-tag">В центре внимания</span></div></div>
+            <div class="event-card"><img src="{% static 'images/event1.jpeg' %}" alt="..."><div class="event-card-content"><div class="event-date">28 сентября 2026 г.</div><h3 class="event-title">ТехноСпортФест 2026: финальные мероприятия в...</h3><span class="event-tag">Мероприятия</span></div></div>
+            <div class="event-card"><img src="{% static 'images/event2.jpeg' %}" alt="..."><div class="event-card-content"><div class="event-date">28 сентября 2026 г.</div><h3 class="event-title">Доступ к платформе психологической поддерж...</h3><span class="event-tag">Мероприятия</span></div></div>
+            <div class="event-card"><img src="{% static 'images/event3.png' %}" alt="..."><div class="event-card-content"><div class="event-date">25 ноября 2025 г.</div><h3 class="event-title">Экспериментальная физика для школьников: ДГТУ ста...</h3><span class="event-tag">В центре внимания</span></div></div>
+            <div class="event-card"><img src="{% static 'images/event4.png' %}" alt="..."><div class="event-card-content"><div class="event-date">20 ноября 2025 г.</div><h3 class="event-title">В ДГТУ стартовал фестиваль этнической культуры...</h3><span class="event-tag">В центре внимания</span></div></div>
         </div>
     </div>
 </section>
